@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo Visual Exclusivo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0284c7',
+                            700: '#0369a1',
+                        },
+                        whatsapp: '#25D366'
+                    },
+                    aspectRatio: {
+                        'portrait': '3 / 4',
+                        'tall': '4 / 5'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            user-select: none;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .visual-card {
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .visual-card:hover {
+            transform: translateY(-6px);
+        }
+        .lightbox-img-container {
+            cursor: grab;
+        }
+        .lightbox-img-container:active {
+            cursor: grabbing;
+        }
+        .zoom-transition {
+            transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col transition-colors duration-300">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-gradient-to-r from-slate-900 via-sky-900 to-indigo-950 text-sky-200 text-xs font-semibold py-2 px-4 text-center tracking-wider border-b border-sky-900/50 flex items-center justify-center gap-2">
+        <i class="fa-solid fa-camera text-sky-400"></i>
+        <span>Catálogo de Exhibición Visual • Haz clic en cualquier imagen para ampliarla en HD</span>
+    </div>
+
+    <!-- Navigation Header -->
+    <header class="sticky top-0 z-40 bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20 gap-4">
+                
+                <!-- Brand Logo -->
+                <div class="flex items-center gap-3 cursor-pointer" onclick="resetFilters()">
+                    <div class="w-11 h-11 rounded-2xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-sky-500/20">
+                        <i class="fa-solid fa-icons text-xl"></i>
+                    </div>
+                    <div>
+                        <span class="text-xl font-extrabold tracking-tight text-white block leading-tight">
+                            STUDIO LOOKBOOK
+                        </span>
+                        <span class="block text-[10px] uppercase font-bold text-sky-400 tracking-widest">Exhibición Visual</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Search Bar -->
+                <div class="hidden md:flex flex-1 max-w-md mx-4">
+                    <div class="relative w-full">
+                        <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                        <input type="text" id="searchInput" oninput="handleSearch()" placeholder="Buscar modelos, prendas, estilos..." 
+                            class="w-full pl-11 pr-10 py-2.5 rounded-full border border-slate-800 bg-slate-900/80 text-white text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 focus:bg-slate-900 transition-all placeholder:text-slate-500">
+                        <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Header Actions -->
+                <div class="flex items-center gap-3">
+                    <!-- Saved Items / Favorites Counter Button -->
+                    <button onclick="openSavedModal()" class="relative flex items-center gap-2 bg-slate-900 hover:bg-slate-800 border border-slate-800 px-4 py-2.5 rounded-full text-slate-200 font-semibold text-xs transition">
+                        <i class="fa-solid fa-bookmark text-amber-400 text-sm"></i>
+                        <span class="hidden sm:inline">Guardados</span>
+                        <span id="savedCount" class="bg-sky-500 text-white text-[11px] font-extrabold px-2 py-0.5 rounded-full shadow-sm">0</span>
+                    </button>
+
+                    <!-- WhatsApp Contact Button -->
+                    <a id="whatsappGeneralBtn" href="https://wa.me/573000000000?text=Hola,%20quisiera%20consultar%20sobre%20su%20catálogo%20de%20exhibición." target="_blank" rel="noopener noreferrer" 
+                       class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-2.5 rounded-full font-bold text-xs shadow-md shadow-emerald-600/20 transition hover:scale-105">
+                        <i class="fa-brands fa-whatsapp text-base"></i>
+                        <span class="hidden sm:inline">Consultar</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mobile Search Bar -->
+            <div class="pb-4 md:hidden">
+                <div class="relative w-full">
+                    <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input type="text" id="mobileSearchInput" oninput="syncMobileSearch(this.value)" placeholder="Buscar en el catálogo visual..." 
+                        class="w-full pl-11 pr-4 py-2 rounded-full border border-slate-800 bg-slate-900 text-white text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 placeholder:text-slate-500">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-2 w-full">
+        <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-3">
+                <div class="w-2.5 h-8 bg-sky-500 rounded-full"></div>
+                <div>
+                    <h2 class="text-lg font-extrabold text-white tracking-tight flex items-center gap-2">
+                        <span>Noticias & Novedades Studio</span>
+                        <span class="bg-sky-500/10 text-sky-400 border border-sky-500/20 text-[10px] uppercase font-bold px-2 py-0.5 rounded-full">Actualizado</span>
+                    </h2>
+                    <p class="text-xs text-slate-400">Entérate de las últimas tendencias, lanzamientos y eventos de exhibición</p>
+                </div>
+            </div>
+            
+            <div class="hidden sm:flex items-center gap-2">
+                <button onclick="scrollNews(-1)" class="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 text-slate-300 hover:text-white flex items-center justify-center transition">
+                    <i class="fa-solid fa-chevron-left text-xs"></i>
+                </button>
+                <button onclick="scrollNews(1)" class="w-8 h-8 rounded-full bg-slate-900 border border-slate-800 text-slate-300 hover:text-white flex items-center justify-center transition">
+                    <i class="fa-solid fa-chevron-right text-xs"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- News Cards Scroll Container -->
+        <div id="newsContainer" 
+             onmouseenter="stopNewsAutoplay()" 
+             onmouseleave="startNewsAutoplay()" 
+             ontouchstart="stopNewsAutoplay()" 
+             ontouchend="startNewsAutoplay()"
+             class="flex gap-4 overflow-x-auto hide-scrollbar scroll-smooth pb-2">
+            
+            <!-- News Item 1 -->
+            <div class="min-w-[280px] sm:min-w-[340px] max-w-[360px] bg-slate-900 border border-slate-800/90 rounded-2xl overflow-hidden p-4 flex flex-col justify-between group hover:border-sky-500/40 transition">
+                <div>
+                    <div class="relative h-36 rounded-xl overflow-hidden mb-3 bg-slate-950">
+                        <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80" alt="Lanzamiento Nueva Colección" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-2 left-2 bg-slate-950/80 backdrop-blur border border-sky-500/30 text-sky-400 text-[10px] font-bold px-2.5 py-0.5 rounded-full">
+                            Lanzamiento
+                        </span>
+                    </div>
+                    <span class="text-[10px] font-semibold text-slate-400 block mb-1">24 Julio, 2026</span>
+                    <h3 class="text-sm font-bold text-white group-hover:text-sky-400 transition leading-snug mb-2">
+                        Lanzamiento Exclusivo: Cápsula Moda Urbana 2026
+                    </h3>
+                    <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+                        Presentamos las imágenes oficiales de nuestra nueva exhibición de cortes oversize y texturas sostenibles.
+                    </p>
+                </div>
+                <button onclick="openNewsModal(0)" class="mt-3 text-xs font-bold text-sky-400 hover:text-sky-300 flex items-center gap-1.5 self-start">
+                    <span>Leer más</span>
+                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </button>
+            </div>
+
+            <!-- News Item 2 -->
+            <div class="min-w-[280px] sm:min-w-[340px] max-w-[360px] bg-slate-900 border border-slate-800/90 rounded-2xl overflow-hidden p-4 flex flex-col justify-between group hover:border-sky-500/40 transition">
+                <div>
+                    <div class="relative h-36 rounded-xl overflow-hidden mb-3 bg-slate-950">
+                        <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80" alt="Exhibición Presencial" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-2 left-2 bg-slate-950/80 backdrop-blur border border-amber-500/30 text-amber-400 text-[10px] font-bold px-2.5 py-0.5 rounded-full">
+                            Showroom
+                        </span>
+                    </div>
+                    <span class="text-[10px] font-semibold text-slate-400 block mb-1">18 Julio, 2026</span>
+                    <h3 class="text-sm font-bold text-white group-hover:text-amber-400 transition leading-snug mb-2">
+                        Apertura de Nuestra Galería de Exhibición Presencial
+                    </h3>
+                    <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+                        Visita nuestro estudio privado para apreciar los acabados en directo bajo cita previa.
+                    </p>
+                </div>
+                <button onclick="openNewsModal(1)" class="mt-3 text-xs font-bold text-sky-400 hover:text-sky-300 flex items-center gap-1.5 self-start">
+                    <span>Ver detalles</span>
+                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </button>
+            </div>
+
+            <!-- News Item 3 -->
+            <div class="min-w-[280px] sm:min-w-[340px] max-w-[360px] bg-slate-900 border border-slate-800/90 rounded-2xl overflow-hidden p-4 flex flex-col justify-between group hover:border-sky-500/40 transition">
+                <div>
+                    <div class="relative h-36 rounded-xl overflow-hidden mb-3 bg-slate-950">
+                        <img src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80" alt="Tendencias Denim" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <span class="absolute top-2 left-2 bg-slate-950/80 backdrop-blur border border-indigo-500/30 text-indigo-400 text-[10px] font-bold px-2.5 py-0.5 rounded-full">
+                            Tendencia
+                        </span>
+                    </div>
+                    <span class="text-[10px] font-semibold text-slate-400 block mb-1">10 Julio, 2026</span>
+                    <h3 class="text-sm font-bold text-white group-hover:text-indigo-400 transition leading-snug mb-2">
+                        Guía Visual: El Regreso del Denim Vintage
+                    </h3>
+                    <p class="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+                        Explora la combinación de lavados clásicos con cortes de silueta contemporánea para este año.
+                    </p>
+                </div>
+                <button onclick="openNewsModal(2)" class="mt-3 text-xs font-bold text-sky-400 hover:text-sky-300 flex items-center gap-1.5 self-start">
+                    <span>Leer más</span>
+                    <i class="fa-solid fa-arrow-right text-[10px]"></i>
+                </button>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-4 pb-4 w-full">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-800/80">
+            
+            <!-- Horizontal Scroll Tags -->
+            <div class="flex items-center gap-2 overflow-x-auto hide-scrollbar pb-2 md:pb-0" id="categoryContainer">
+                <!-- Dynamically populated tags -->
+            </div>
+
+            <!-- Layout View Controls -->
+            <div class="flex items-center justify-between sm:justify-end gap-3 min-w-max">
+                <span id="productCounter" class="text-xs text-slate-400 font-medium">8 prendas</span>
+                
+                <div class="flex items-center bg-slate-900 p-1 rounded-xl border border-slate-800">
+                    <button id="cols4Btn" onclick="setGridColumns(4)" title="Vista 4 Columnas" class="w-8 h-8 rounded-lg bg-slate-800 text-white flex items-center justify-center transition">
+                        <i class="fa-solid fa-border-all text-xs"></i>
+                    </button>
+                    <button id="cols3Btn" onclick="setGridColumns(3)" title="Vista 3 Columnas" class="w-8 h-8 rounded-lg text-slate-400 hover:text-white flex items-center justify-center transition">
+                        <i class="fa-solid fa-grip text-xs"></i>
+                    </button>
+                    <button id="cols2Btn" onclick="setGridColumns(2)" title="Vista Enfoque Amplio" class="w-8 h-8 rounded-lg text-slate-400 hover:text-white flex items-center justify-center transition">
+                        <i class="fa-solid fa-square text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Active Filter Badge -->
+        <div id="activeFiltersContainer" class="hidden items-center gap-2 text-xs text-slate-400 mt-4">
+            <span>Filtro de búsqueda:</span>
+            <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-sky-950 border border-sky-800 text-sky-300 font-medium">
+                <span id="activeFilterText">Todos</span>
+                <button onclick="resetFilters()" class="hover:text-rose-400"><i class="fa-solid fa-xmark"></i></button>
+            </span>
+        </div>
+    </section>
+
+    <!-- Visual Showcase Main Grid -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex-grow w-full">
+        <div id="productsWrapper" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
+            <!-- Visual Product Cards dynamically injected here -->
+        </div>
+
+        <!-- Empty Results State -->
+        <div id="emptyState" class="hidden py-20 text-center space-y-4">
+            <div class="w-20 h-20 mx-auto rounded-full bg-slate-900 border border-slate-800 flex items-center justify-center text-slate-500 text-3xl">
+                <i class="fa-solid fa-image"></i>
+            </div>
+            <h3 class="text-lg font-bold text-white">No se encontraron imágenes</h3>
+            <p class="text-xs text-slate-400 max-w-sm mx-auto">Prueba seleccionando otra categoría o limpiando los términos de búsqueda.</p>
+            <button onclick="resetFilters()" class="inline-flex items-center gap-2 px-5 py-2.5 bg-sky-600 text-white text-xs font-bold rounded-full hover:bg-sky-500 transition">
+                <i class="fa-solid fa-rotate-left"></i> Ver Todo el Catálogo
+            </button>
+        </div>
+    </main>
+
+    <!-- Comprehensive Footer -->
+    <footer class="bg-slate-900/90 border-t border-slate-800/80 text-slate-400 mt-16 pt-12 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-12 border-b border-slate-800">
+                
+                <!-- Col 1: Brand & Bio -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-sky-500 to-indigo-600 flex items-center justify-center text-white shadow-lg shadow-sky-500/20">
+                            <i class="fa-solid fa-icons text-lg"></i>
+                        </div>
+                        <span class="text-lg font-extrabold tracking-tight text-white">
+                            STUDIO LOOKBOOK
+                        </span>
+                    </div>
+                    <p class="text-xs leading-relaxed text-slate-400">
+                        Catálogo e itinerario de exhibición visual exclusivo. Diseñado para mostrar modelos, prendas y colecciones con la más alta resolución.
+                    </p>
+                    
+                    <!-- Social Media Links -->
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Instagram" 
+                           class="w-9 h-9 rounded-full bg-slate-950 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-pink-400 hover:border-pink-500/50 hover:bg-slate-800 transition">
+                            <i class="fa-brands fa-instagram text-sm"></i>
+                        </a>
+                        <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Facebook" 
+                           class="w-9 h-9 rounded-full bg-slate-950 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-blue-400 hover:border-blue-500/50 hover:bg-slate-800 transition">
+                            <i class="fa-brands fa-facebook-f text-sm"></i>
+                        </a>
+                        <a href="https://tiktok.com" target="_blank" rel="noopener" aria-label="TikTok" 
+                           class="w-9 h-9 rounded-full bg-slate-950 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-sky-300 hover:border-sky-400/50 hover:bg-slate-800 transition">
+                            <i class="fa-brands fa-tiktok text-sm"></i>
+                        </a>
+                        <a href="https://pinterest.com" target="_blank" rel="noopener" aria-label="Pinterest" 
+                           class="w-9 h-9 rounded-full bg-slate-950 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-rose-400 hover:border-rose-500/50 hover:bg-slate-800 transition">
+                            <i class="fa-brands fa-pinterest-p text-sm"></i>
+                        </a>
+                        <a href="https://wa.me/573000000000" target="_blank" rel="noopener" aria-label="WhatsApp" 
+                           class="w-9 h-9 rounded-full bg-slate-950 border border-slate-800 flex items-center justify-center text-slate-300 hover:text-emerald-400 hover:border-emerald-500/50 hover:bg-slate-800 transition">
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Col 2: Contact Information -->
+                <div class="space-y-3">
+                    <h3 class="text-sm font-bold text-white uppercase tracking-wider">Contacto & Atención</h3>
+                    <ul class="space-y-2.5 text-xs">
+                        <li class="flex items-start gap-3">
+                            <i class="fa-solid fa-location-dot text-sky-400 mt-0.5"></i>
+                            <span>Av. El Poblado #10-25, Galería Creativa, Medellín, Colombia</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-sky-400"></i>
+                            <a href="tel:+573000000000" class="hover:text-white transition">+57 300 000 0000</a>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-sky-400"></i>
+                            <a href="mailto:contacto@studiolookbook.com" class="hover:text-white transition">contacto@studiolookbook.com</a>
+                        </li>
+                        <li class="flex items-start gap-3 pt-1">
+                            <i class="fa-solid fa-clock text-sky-400 mt-0.5"></i>
+                            <div>
+                                <span class="block font-semibold text-slate-200">Horario de Atención:</span>
+                                <span>Lun - Sáb: 10:00 AM - 7:00 PM</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Col 3: Quick Navigation Links -->
+                <div class="space-y-3">
+                    <h3 class="text-sm font-bold text-white uppercase tracking-wider">Categorías Principales</h3>
+                    <ul class="space-y-2 text-xs">
+                        <li>
+                            <button onclick="filterByCategory('Chaquetas')" class="hover:text-sky-400 transition flex items-center gap-2">
+                                <i class="fa-solid fa-chevron-right text-[9px] text-slate-600"></i> Chaquetas & Abrigos
+                            </button>
+                        </li>
+                        <li>
+                            <button onclick="filterByCategory('Calzado')" class="hover:text-sky-400 transition flex items-center gap-2">
+                                <i class="fa-solid fa-chevron-right text-[9px] text-slate-600"></i> Calzado & Sneakers
+                            </button>
+                        </li>
+                        <li>
+                            <button onclick="filterByCategory('Camisas')" class="hover:text-sky-400 transition flex items-center gap-2">
+                                <i class="fa-solid fa-chevron-right text-[9px] text-slate-600"></i> Camisas & Blusas
+                            </button>
+                        </li>
+                        <li>
+                            <button onclick="filterByCategory('Accesorios')" class="hover:text-sky-400 transition flex items-center gap-2">
+                                <i class="fa-solid fa-chevron-right text-[9px] text-slate-600"></i> Accesorios & Complementos
+                            </button>
+                        </li>
+                        <li>
+                            <button onclick="openSavedModal()" class="hover:text-amber-400 transition flex items-center gap-2 pt-1 text-slate-300">
+                                <i class="fa-solid fa-bookmark text-amber-400 text-xs"></i> Ver Colección Guardada
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Col 4: Location Map Preview -->
+                <div class="space-y-3">
+                    <h3 class="text-sm font-bold text-white uppercase tracking-wider flex items-center justify-between">
+                        <span>Ubicación</span>
+                        <span class="text-[10px] font-normal text-slate-400">Ver mapa</span>
+                    </h3>
+                    <div class="rounded-2xl overflow-hidden border border-slate-800 bg-slate-950 h-36 relative group">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.521260322283!2d-75.567!3d6.208!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e4428df8b1d!2sEl%20Poblado%2C%20Medellin!5e0!3m2!1ses!2sco!4v1680000000000!5m2!1ses!2sco" 
+                            width="100%" 
+                            height="100%" 
+                            style="border:0; filter: grayscale(0.8) contrast(1.2) opacity(0.8);" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            title="Mapa de ubicación del showroom"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                        <a href="https://maps.google.com" target="_blank" rel="noopener" 
+                           class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 backdrop-blur-[2px] transition flex items-center justify-center text-xs font-bold text-white gap-2">
+                            <i class="fa-solid fa-map-location-dot text-sky-400 text-base"></i>
+                            <span>Abrir en Google Maps</span>
+                        </a>
+                    </div>
+                    <p class="text-[11px] text-slate-500">Atención personalizada en showroom únicamente con cita previa.</p>
+                </div>
+
+            </div>
+
+            <!-- Footer Bottom Rights Bar -->
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+                <p>© 2026 Studio Lookbook. Todos los derechos reservados. Catálogo de exhibición visual únicamente.</p>
+                <div class="flex items-center gap-6">
+                    <a href="#" onclick="showToast('Aviso de privacidad del catálogo', 'info'); return false;" class="hover:text-slate-400 transition">Privacidad</a>
+                    <a href="#" onclick="showToast('Términos de exhibición visual', 'info'); return false;" class="hover:text-slate-400 transition">Términos</a>
+                    <button onclick="window.scrollTo({top: 0, behavior: 'smooth'})" class="text-sky-400 hover:text-sky-300 font-semibold flex items-center gap-1">
+                        <span>Ir arriba</span>
+                        <i class="fa-solid fa-chevron-up text-[10px]"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- News Article Detail Modal -->
+    <div id="newsModal" class="fixed inset-0 z-50 hidden bg-slate-950/90 backdrop-blur-md flex items-center justify-center p-4 transition-opacity">
+        <div class="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl relative animate-in fade-in zoom-in duration-200">
+            <button onclick="closeNewsModal()" class="absolute top-4 right-4 z-10 w-9 h-9 rounded-full bg-slate-950/80 border border-slate-700 text-slate-300 hover:text-white flex items-center justify-center">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="h-48 bg-slate-950 relative">
+                <img id="newsModalImg" src="" alt="Noticia" class="w-full h-full object-cover">
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-900 to-transparent"></div>
+            </div>
+            <div class="p-6 space-y-3">
+                <span id="newsModalBadge" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-sky-950 border border-sky-800 text-sky-400 inline-block">Categoría</span>
+                <h3 id="newsModalTitle" class="text-lg font-bold text-white leading-snug">Título de la noticia</h3>
+                <p id="newsModalDate" class="text-[11px] text-slate-500 font-semibold">Fecha</p>
+                <p id="newsModalBody" class="text-xs text-slate-300 leading-relaxed pt-2 border-t border-slate-800/80">
+                    Detalle de la noticia...
+                </p>
+                <div class="pt-4 flex justify-end">
+                    <button onclick="closeNewsModal()" class="px-5 py-2 rounded-full bg-sky-600 hover:bg-sky-500 text-white text-xs font-bold transition">
+                        Entendido
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox Zoom Modal (High Resolution Image Viewer) -->
+    <div id="lightboxModal" class="fixed inset-0 z-50 hidden bg-slate-950/95 backdrop-blur-xl flex flex-col justify-between transition-opacity duration-300">
+        
+        <!-- Lightbox Top Navigation Bar -->
+        <div class="p-4 sm:p-6 flex items-center justify-between border-b border-slate-800/80 z-10 bg-slate-950/80">
+            <div class="flex items-center gap-3">
+                <span id="lightboxCategory" class="px-3 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest bg-sky-950 border border-sky-800 text-sky-400">
+                    Chaquetas
+                </span>
+                <h3 id="lightboxTitle" class="text-sm sm:text-base font-bold text-white truncate max-w-xs sm:max-w-md">
+                    Nombre de la prenda
+                </h3>
+            </div>
+
+            <!-- Lightbox Action Controls -->
+            <div class="flex items-center gap-2">
+                <!-- Zoom Out -->
+                <button onclick="zoomImage(-0.25)" class="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-200 flex items-center justify-center transition" title="Reducir Zoom">
+                    <i class="fa-solid fa-magnifying-glass-minus text-sm"></i>
+                </button>
+                
+                <!-- Zoom Level Indicator -->
+                <span id="zoomLevelText" class="text-xs font-mono text-slate-400 min-w-[45px] text-center hidden sm:inline">100%</span>
+
+                <!-- Zoom In -->
+                <button onclick="zoomImage(0.25)" class="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-200 flex items-center justify-center transition" title="Aumentar Zoom">
+                    <i class="fa-solid fa-magnifying-glass-plus text-sm"></i>
+                </button>
+
+                <!-- Reset Zoom -->
+                <button onclick="resetZoom()" class="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-200 flex items-center justify-center transition" title="Restablecer vista">
+                    <i class="fa-solid fa-expand text-sm"></i>
+                </button>
+
+                <!-- Bookmark Button -->
+                <button id="lightboxSaveBtn" onclick="toggleSaveCurrentLightbox()" class="w-10 h-10 rounded-full bg-slate-900 border border-slate-800 hover:bg-slate-800 text-slate-200 flex items-center justify-center transition" title="Guardar imagen">
+                    <i class="fa-regular fa-bookmark text-sm"></i>
+                </button>
+
+                <!-- Close Modal -->
+                <button onclick="closeLightbox()" class="w-10 h-10 rounded-full bg-rose-600/20 border border-rose-500/30 hover:bg-rose-600 text-white flex items-center justify-center shadow-lg transition ml-2">
+                    <i class="fa-solid fa-xmark text-base"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Lightbox Main Canvas / Interactive Image Area -->
+        <div class="relative flex-1 overflow-hidden flex items-center justify-center p-2 sm:p-6" id="lightboxViewport">
+            <!-- Navigation Arrow Left -->
+            <button onclick="prevLightboxImage()" class="absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-slate-900/80 border border-slate-700/60 hover:bg-sky-600 text-white flex items-center justify-center shadow-2xl transition backdrop-blur">
+                <i class="fa-solid fa-chevron-left text-lg"></i>
+            </button>
+
+            <!-- Image Holder with Pan and Zoom -->
+            <div id="lightboxImgContainer" class="lightbox-img-container relative max-w-full max-h-full flex items-center justify-center">
+                <img id="lightboxImage" src="" alt="Vista previa HD" class="zoom-transition max-h-[75vh] sm:max-h-[82vh] max-w-full object-contain rounded-2xl shadow-2xl select-none" draggable="false">
+            </div>
+
+            <!-- Navigation Arrow Right -->
+            <button onclick="nextLightboxImage()" class="absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 rounded-full bg-slate-900/80 border border-slate-700/60 hover:bg-sky-600 text-white flex items-center justify-center shadow-2xl transition backdrop-blur">
+                <i class="fa-solid fa-chevron-right text-lg"></i>
+            </button>
+        </div>
+
+        <!-- Lightbox Bottom Details & Gallery Thumbnails Bar -->
+        <div class="p-4 sm:p-6 border-t border-slate-800/80 bg-slate-950/90 flex flex-col sm:flex-row items-center justify-between gap-4 z-10">
+            <p id="lightboxDescription" class="text-xs sm:text-sm text-slate-300 max-w-2xl leading-relaxed text-center sm:text-left">
+                Descripción detallada del modelo visual.
+            </p>
+
+            <div class="flex items-center gap-3">
+                <button onclick="shareImageLink()" class="px-4 py-2.5 rounded-full border border-slate-800 hover:bg-slate-900 text-slate-300 text-xs font-semibold flex items-center gap-2 transition">
+                    <i class="fa-solid fa-share-nodes"></i>
+                    <span>Compartir</span>
+                </button>
+                
+                <a id="lightboxWhatsappBtn" href="#" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold flex items-center gap-2 shadow-lg shadow-emerald-600/20 transition">
+                    <i class="fa-brands fa-whatsapp text-base"></i>
+                    <span>Consultar por WhatsApp</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Saved Items / Favorites Modal -->
+    <div id="savedModal" class="fixed inset-0 z-50 hidden bg-slate-950/80 backdrop-blur-md flex justify-end transition-opacity">
+        <div class="w-full max-w-md bg-slate-900 border-l border-slate-800 h-full shadow-2xl flex flex-col justify-between animate-in slide-in-from-right duration-300">
+            
+            <!-- Saved Header -->
+            <div class="p-6 border-b border-slate-800 flex items-center justify-between">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center">
+                        <i class="fa-solid fa-bookmark text-base"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-white">Prendas Guardadas</h3>
+                        <p class="text-xs text-slate-400">Tu selección de modelos favorita</p>
+                    </div>
+                </div>
+                <button onclick="closeSavedModal()" class="w-8 h-8 rounded-full hover:bg-slate-800 text-slate-400 flex items-center justify-center">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Saved Items List -->
+            <div id="savedList" class="p-6 flex-1 overflow-y-auto space-y-4">
+                <!-- Dynamically populated -->
+            </div>
+
+            <!-- Saved Footer -->
+            <div class="p-6 border-t border-slate-800 space-y-3 bg-slate-950/60">
+                <button id="sendSavedWhatsappBtn" onclick="sendSavedInquiry()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 px-4 rounded-full shadow-lg shadow-emerald-600/20 flex items-center justify-center gap-2 transition text-xs">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Consultar Toda la Selección por WhatsApp</span>
+                </button>
+                <button onclick="clearSaved()" class="w-full text-slate-500 hover:text-rose-400 text-xs font-semibold py-1 transition text-center">
+                    Vaciar colección guardada
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Feedback Notification -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 border border-slate-700 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 text-sm font-medium">
+        <i id="toastIcon" class="fa-solid fa-circle-check text-emerald-400"></i>
+        <span id="toastMessage">Notificación</span>
+    </div>
+
+    <script>
+        /* WhatsApp Direct Contact Number */
+        const PHONE_NUMBER = "573000000000";
+
+        /* Pure Visual Catalog Image Database */
+        const VISUAL_PRODUCTS_DATA = [
+            {
+                id: 1,
+                name: "Chaqueta Denim Oversize Vintage",
+                category: "Chaquetas",
+                tag: "Colección Denim",
+                description: "Chaqueta de mezclilla estilo oversize corte estructurado con lavado vintage artesanal y acabados metálicos.",
+                image: "https://images.unsplash.com/photo-1543076447-215ad9ba6923?auto=format&fit=crop&w=1200&q=85"
+            },
+            {
+                id: 2,
+                name: "Chaqueta Cuero Biker Minimal",
+                category: "Chaquetas",
+                tag: "Destacado",
+                description: "Chaqueta de piel sintética premium corte ajustado, solapas clásicas y cierres asimétricos reforzados.",
+                image: "https://images.unsplash.com/photo-1551028719-00167b16eac5?auto=format&fit=crop&w=1200&q=85"
+            },
+            {
+                id: 3,
+                name: "Sneakers Urban Comfort Retro",
+                category: "Calzado",
+                tag: "Tendencia",
+                description: "Tenis urbanos de suela de goma con silueta clásica de paneles contrastados y plantilla anatómica.",
+                image: "https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=1200&q=85"
+            },
+            {
+                id: 4,
+                name: "Camisa Lino Natural Manga Larga",
+                category: "Camisas",
+                tag: "Verano",
+                description: "Camisa holgada elaborada en lino y algodón orgánico transpirable. Cuello tradicional y textura ligera.",
+                image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=1200&q=85"
+            },
+            {
+                id: 5,
+                name: "Gafas de Sol Polarizadas Retro Frame",
+                category: "Accesorios",
+                tag: "Accesorios",
+                description: "Gafas de sol con montura de acetato resistente y cristales polarizados con protección UV400.",
+                image: "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=1200&q=85"
+            },
+            {
+                id: 6,
+                name: "Hoodie Essential Heavyweight",
+                category: "Buzos",
+                tag: "Essentials",
+                description: "Buzo de algodón afelpado corte relajado con capucha estructurada y bolsillo frontal minimalista.",
+                image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=1200&q=85"
+            },
+            {
+                id: 7,
+                name: "Pantalón Cargo Táctico Relaxed",
+                category: "Pantalones",
+                tag: "Streetwear",
+                description: "Pantalón cargo de tejido ripstop antidesgarro con múltiples bolsillos funcionales laterales y pretina elástica.",
+                image: "https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=1200&q=85"
+            },
+            {
+                id: 8,
+                name: "Mochila Urbana Impermeable Roll-top",
+                category: "Accesorios",
+                tag: "Urbano",
+                description: "Mochila enrolable con revestimiento impermeable de alta densidad y compartimento interior acolchado.",
+                image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1200&q=85"
+            }
+        ];
+
+        /* Global Application State */
+        let state = {
+            products: [...VISUAL_PRODUCTS_DATA],
+            filteredProducts: [...VISUAL_PRODUCTS_DATA],
+            activeCategory: "Todos",
+            searchQuery: "",
+            gridCols: 4,
+            savedItems: JSON.parse(localStorage.getItem('catalog_saved_items') || '[]'),
+            lightboxIndex: 0,
+            zoomLevel: 1.0
+        };
+
+        let newsInterval = null;
+
+        window.onload = function() {
+            initCategories();
+            renderProducts();
+            updateSavedCounter();
+            setupLightboxPanning();
+            startNewsAutoplay();
+        };
+
+        /* News Auto Carousel Scroll Logic */
+        function startNewsAutoplay() {
+            stopNewsAutoplay();
+            newsInterval = setInterval(() => {
+                const container = document.getElementById('newsContainer');
+                if (!container) return;
+                
+                const maxScroll = container.scrollWidth - container.clientWidth;
+                if (container.scrollLeft >= maxScroll - 15) {
+                    container.scrollTo({ left: 0, behavior: 'smooth' });
+                } else {
+                    container.scrollBy({ left: 320, behavior: 'smooth' });
+                }
+            }, 3500);
+        }
+
+        function stopNewsAutoplay() {
+            if (newsInterval) {
+                clearInterval(newsInterval);
+                newsInterval = null;
+            }
+        }
+
+        /* Category Horizontal Pills Setup */
+        function initCategories() {
+            const categories = ["Todos", ...new Set(VISUAL_PRODUCTS_DATA.map(p => p.category))];
+            const container = document.getElementById('categoryContainer');
+            
+            container.innerHTML = categories.map(cat => `
+                <button onclick="filterByCategory('${cat}')" 
+                    class="category-btn px-4 py-2 rounded-full text-xs font-bold whitespace-nowrap transition-all duration-200 ${
+                        state.activeCategory === cat 
+                        ? 'bg-sky-500 text-white shadow-lg shadow-sky-500/20 scale-105' 
+                        : 'bg-slate-900 border border-slate-800 text-slate-300 hover:bg-slate-800'
+                    }">
+                    ${cat}
+                </button>
+            `).join('');
+        }
+
+        /* Filter Logic */
+        function filterByCategory(cat) {
+            state.activeCategory = cat;
+            initCategories();
+            applyFilters();
+        }
+
+        function handleSearch() {
+            const val = document.getElementById('searchInput').value;
+            state.searchQuery = val;
+            document.getElementById('clearSearchBtn').classList.toggle('hidden', !val);
+            applyFilters();
+        }
+
+        function syncMobileSearch(val) {
+            document.getElementById('searchInput').value = val;
+            handleSearch();
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('mobileSearchInput').value = '';
+            state.searchQuery = '';
+            document.getElementById('clearSearchBtn').classList.add('hidden');
+            applyFilters();
+        }
+
+        function resetFilters() {
+            state.activeCategory = "Todos";
+            state.searchQuery = "";
+            document.getElementById('searchInput').value = '';
+            document.getElementById('mobileSearchInput').value = '';
+            document.getElementById('clearSearchBtn').classList.add('hidden');
+            initCategories();
+            applyFilters();
+        }
+
+        function applyFilters() {
+            let result = VISUAL_PRODUCTS_DATA.filter(p => {
+                const matchesCategory = state.activeCategory === "Todos" || p.category === state.activeCategory;
+                const query = state.searchQuery.toLowerCase();
+                const matchesSearch = p.name.toLowerCase().includes(query) || 
+                                      p.category.toLowerCase().includes(query) || 
+                                      p.description.toLowerCase().includes(query) ||
+                                      p.tag.toLowerCase().includes(query);
+                return matchesCategory && matchesSearch;
+            });
+
+            state.filteredProducts = result;
+            renderProducts();
+
+            // Active Filter Text
+            const activeContainer = document.getElementById('activeFiltersContainer');
+            if (state.activeCategory !== "Todos" || state.searchQuery) {
+                activeContainer.classList.remove('hidden');
+                activeContainer.classList.add('flex');
+                document.getElementById('activeFilterText').innerText = 
+                    `${state.activeCategory !== "Todos" ? state.activeCategory : ''} ${state.searchQuery ? `"${state.searchQuery}"` : ''}`.trim();
+            } else {
+                activeContainer.classList.add('hidden');
+                activeContainer.classList.remove('flex');
+            }
+        }
+
+        /* Grid Column Switching */
+        function setGridColumns(cols) {
+            state.gridCols = cols;
+            const btn4 = document.getElementById('cols4Btn');
+            const btn3 = document.getElementById('cols3Btn');
+            const btn2 = document.getElementById('cols2Btn');
+
+            [btn4, btn3, btn2].forEach(b => {
+                b.className = 'w-8 h-8 rounded-lg text-slate-400 hover:text-white flex items-center justify-center transition';
+            });
+
+            if (cols === 4) btn4.className = 'w-8 h-8 rounded-lg bg-slate-800 text-white flex items-center justify-center transition';
+            if (cols === 3) btn3.className = 'w-8 h-8 rounded-lg bg-slate-800 text-white flex items-center justify-center transition';
+            if (cols === 2) btn2.className = 'w-8 h-8 rounded-lg bg-slate-800 text-white flex items-center justify-center transition';
+
+            renderProducts();
+        }
+
+        /* Render Products Visual Showcase */
+        function renderProducts() {
+            const wrapper = document.getElementById('productsWrapper');
+            const emptyState = document.getElementById('emptyState');
+            const counter = document.getElementById('productCounter');
+
+            counter.innerText = `${state.filteredProducts.length} modelo${state.filteredProducts.length !== 1 ? 's' : ''}`;
+
+            if (state.filteredProducts.length === 0) {
+                wrapper.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+
+            // Set dynamic responsive grid class based on user choice (default 2 cols on mobile)
+            if (state.gridCols === 4) {
+                wrapper.className = "grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6";
+            } else if (state.gridCols === 3) {
+                wrapper.className = "grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6";
+            } else {
+                wrapper.className = "grid grid-cols-2 gap-4 sm:gap-8";
+            }
+
+            wrapper.innerHTML = state.filteredProducts.map((product, idx) => {
+                const isSaved = state.savedItems.some(item => item.id === product.id);
+                return `
+                    <div class="visual-card group relative bg-slate-900 border border-slate-800/80 rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl flex flex-col justify-between cursor-pointer" onclick="openLightbox(${idx})">
+                        
+                        <!-- High Priority Portrait Image Container -->
+                        <div class="relative w-full aspect-portrait overflow-hidden bg-slate-950">
+                            <img src="${product.image}" alt="${product.name}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out" loading="lazy">
+                            
+                            <!-- Overlay Gradient for Contrast -->
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
+
+                            <!-- Category / Tag Badge -->
+                            <span class="absolute top-2 left-2 sm:top-4 sm:left-4 bg-slate-950/80 backdrop-blur border border-slate-800 text-sky-400 text-[8px] sm:text-[10px] font-extrabold uppercase tracking-wider sm:tracking-widest px-2 py-0.5 sm:px-3 sm:py-1 rounded-full shadow-md">
+                                ${product.category}
+                            </span>
+
+                            <!-- Action Buttons on Top Right -->
+                            <div class="absolute top-2 right-2 sm:top-4 sm:right-4 flex items-center gap-2">
+                                <button onclick="event.stopPropagation(); toggleSaveItem(${product.id})" 
+                                    aria-label="Guardar Imagen"
+                                    class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-slate-950/80 backdrop-blur border border-slate-800 text-slate-300 hover:text-amber-400 flex items-center justify-center shadow-lg transition transform group-hover:scale-105">
+                                    <i class="${isSaved ? 'fa-solid fa-bookmark text-amber-400' : 'fa-regular fa-bookmark'} text-xs sm:text-sm"></i>
+                                </button>
+                            </div>
+
+                            <!-- Expand Icon Prompt on Hover -->
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
+                                <span class="bg-sky-500/90 text-white text-[10px] sm:text-xs font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full backdrop-blur shadow-2xl flex items-center gap-1.5 sm:gap-2 transform translate-y-2 group-hover:translate-y-0 transition-transform">
+                                    <i class="fa-solid fa-magnifying-glass-plus"></i> <span class="hidden sm:inline">Ampliar Imagen</span><span class="sm:hidden">Ver</span>
+                                </span>
+                            </div>
+
+                            <!-- Card Bottom Description -->
+                            <div class="absolute bottom-0 inset-x-0 p-3 sm:p-5 space-y-0.5 sm:space-y-1">
+                                <h3 class="font-bold text-white text-xs sm:text-base leading-tight sm:leading-snug group-hover:text-sky-300 transition line-clamp-2 sm:line-clamp-1">
+                                    ${product.name}
+                                </h3>
+                                <p class="text-[10px] sm:text-xs text-slate-400 line-clamp-1 sm:line-clamp-2 leading-tight sm:leading-relaxed">
+                                    ${product.description}
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                `;
+            }).join('');
+        }
+
+        /* Lightbox Fullscreen & Zoom Controller */
+        function openLightbox(index) {
+            state.lightboxIndex = index;
+            state.zoomLevel = 1.0;
+            updateLightboxContent();
+            
+            const modal = document.getElementById('lightboxModal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const modal = document.getElementById('lightboxModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            resetZoom();
+        }
+
+        function updateLightboxContent() {
+            const product = state.filteredProducts[state.lightboxIndex];
+            if (!product) return;
+
+            document.getElementById('lightboxImage').src = product.image;
+            document.getElementById('lightboxTitle').innerText = product.name;
+            document.getElementById('lightboxCategory').innerText = product.category;
+            document.getElementById('lightboxDescription').innerText = product.description;
+
+            // Update Save Button
+            const isSaved = state.savedItems.some(item => item.id === product.id);
+            const saveBtn = document.getElementById('lightboxSaveBtn');
+            saveBtn.innerHTML = `<i class="${isSaved ? 'fa-solid fa-bookmark text-amber-400' : 'fa-regular fa-bookmark'} text-sm"></i>`;
+
+            // WhatsApp link for this individual item
+            const waText = `Hola, estaba viendo su catálogo visual y me gustaría consultar disponibilidad de la siguiente prenda:\n\n` +
+                           `📌 *${product.name}*\n` +
+                           `📂 *Categoría:* ${product.category}\n\n` +
+                           `¿Tienen más fotos o detalles disponibles?`;
+            
+            document.getElementById('lightboxWhatsappBtn').href = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(waText)}`;
+            
+            resetZoom();
+        }
+
+        function nextLightboxImage() {
+            if (state.filteredProducts.length === 0) return;
+            state.lightboxIndex = (state.lightboxIndex + 1) % state.filteredProducts.length;
+            updateLightboxContent();
+        }
+
+        function prevLightboxImage() {
+            if (state.filteredProducts.length === 0) return;
+            state.lightboxIndex = (state.lightboxIndex - 1 + state.filteredProducts.length) % state.filteredProducts.length;
+            updateLightboxContent();
+        }
+
+        /* Keyboard Navigation for Lightbox */
+        document.addEventListener('keydown', function(e) {
+            const modal = document.getElementById('lightboxModal');
+            if (modal.classList.contains('hidden')) return;
+
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextLightboxImage();
+            if (e.key === 'ArrowLeft') prevLightboxImage();
+        });
+
+        /* Image Zoom Control */
+        function zoomImage(delta) {
+            state.zoomLevel = Math.max(0.75, Math.min(3.0, state.zoomLevel + delta));
+            applyZoomTransform();
+        }
+
+        function resetZoom() {
+            state.zoomLevel = 1.0;
+            const img = document.getElementById('lightboxImage');
+            img.style.transform = `scale(1) translate(0px, 0px)`;
+            document.getElementById('zoomLevelText').innerText = '100%';
+        }
+
+        function applyZoomTransform() {
+            const img = document.getElementById('lightboxImage');
+            img.style.transform = `scale(${state.zoomLevel})`;
+            document.getElementById('zoomLevelText').innerText = `${Math.round(state.zoomLevel * 100)}%`;
+        }
+
+        /* Panning functionality when zoomed */
+        function setupLightboxPanning() {
+            const img = document.getElementById('lightboxImage');
+            let isDragging = false;
+            let startX, startY, translateX = 0, translateY = 0;
+
+            img.addEventListener('mousedown', (e) => {
+                if (state.zoomLevel <= 1) return;
+                isDragging = true;
+                startX = e.clientX - translateX;
+                startY = e.clientY - translateY;
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDragging) return;
+                translateX = e.clientX - startX;
+                translateY = e.clientY - startY;
+                img.style.transform = `scale(${state.zoomLevel}) translate(${translateX / state.zoomLevel}px, ${translateY / state.zoomLevel}px)`;
+            });
+
+            window.addEventListener('mouseup', () => {
+                isDragging = false;
+            });
+        }
+
+        /* Saved Collection Logic */
+        function toggleSaveItem(id) {
+            const index = state.savedItems.findIndex(item => item.id === id);
+            if (index > -1) {
+                state.savedItems.splice(index, 1);
+                showToast("Prenda eliminada de tus guardados", "info");
+            } else {
+                const product = VISUAL_PRODUCTS_DATA.find(p => p.id === id);
+                if (product) {
+                    state.savedItems.push(product);
+                    showToast("¡Prenda guardada en tu colección!", "success");
+                }
+            }
+            localStorage.setItem('catalog_saved_items', JSON.stringify(state.savedItems));
+            updateSavedCounter();
+            renderProducts();
+            
+            // Sync current lightbox save icon if active
+            if (!document.getElementById('lightboxModal').classList.contains('hidden')) {
+                const currentProduct = state.filteredProducts[state.lightboxIndex];
+                if (currentProduct && currentProduct.id === id) {
+                    const isSaved = state.savedItems.some(item => item.id === id);
+                    document.getElementById('lightboxSaveBtn').innerHTML = `<i class="${isSaved ? 'fa-solid fa-bookmark text-amber-400' : 'fa-regular fa-bookmark'} text-sm"></i>`;
+                }
+            }
+        }
+
+        function toggleSaveCurrentLightbox() {
+            const currentProduct = state.filteredProducts[state.lightboxIndex];
+            if (currentProduct) {
+                toggleSaveItem(currentProduct.id);
+            }
+        }
+
+        function updateSavedCounter() {
+            document.getElementById('savedCount').innerText = state.savedItems.length;
+        }
+
+        function openSavedModal() {
+            renderSavedItems();
+            document.getElementById('savedModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSavedModal() {
+            document.getElementById('savedModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function renderSavedItems() {
+            const list = document.getElementById('savedList');
+            if (state.savedItems.length === 0) {
+                list.innerHTML = `
+                    <div class="text-center py-16 space-y-3">
+                        <i class="fa-regular fa-bookmark text-4xl text-slate-700"></i>
+                        <p class="text-xs font-semibold text-slate-400">No tienes modelos o prendas guardadas aún.</p>
+                    </div>
+                `;
+                document.getElementById('sendSavedWhatsappBtn').disabled = true;
+                document.getElementById('sendSavedWhatsappBtn').classList.add('opacity-50', 'cursor-not-allowed');
+                return;
+            }
+
+            document.getElementById('sendSavedWhatsappBtn').disabled = false;
+            document.getElementById('sendSavedWhatsappBtn').classList.remove('opacity-50', 'cursor-not-allowed');
+
+            list.innerHTML = state.savedItems.map(item => `
+                <div class="flex items-center gap-3 p-3 rounded-2xl bg-slate-950 border border-slate-800">
+                    <img src="${item.image}" alt="${item.name}" class="w-16 h-16 rounded-xl object-cover">
+                    <div class="flex-1 min-w-0">
+                        <span class="text-[9px] font-extrabold uppercase tracking-widest text-sky-400">${item.category}</span>
+                        <h4 class="font-bold text-xs text-white truncate">${item.name}</h4>
+                    </div>
+                    <button onclick="toggleSaveItem(${item.id}); renderSavedItems();" class="text-slate-500 hover:text-rose-400 p-2">
+                        <i class="fa-solid fa-trash-can text-sm"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function clearSaved() {
+            state.savedItems = [];
+            localStorage.setItem('catalog_saved_items', JSON.stringify([]));
+            updateSavedCounter();
+            renderSavedItems();
+            renderProducts();
+            showToast("Colección guardada vaciada", "info");
+        }
+
+        function sendSavedInquiry() {
+            if (state.savedItems.length === 0) return;
+
+            let text = `Hola! Estaba revisando su catálogo visual y guardé los siguientes modelos que me interesan:\n\n`;
+
+            state.savedItems.forEach((item, index) => {
+                text += `${index + 1}. *${item.name}* (${item.category})\n`;
+            });
+
+            text += `\n¿Me podrían brindar más información de disponibilidad? ¡Muchas gracias!`;
+
+            const link = `https://wa.me/${PHONE_NUMBER}?text=${encodeURIComponent(text)}`;
+            window.open(link, '_blank');
+        }
+
+        function shareImageLink() {
+            const currentProduct = state.filteredProducts[state.lightboxIndex];
+            if (!currentProduct) return;
+
+            const shareText = `Ver modelo en el catálogo: ${currentProduct.name}`;
+            
+            const dummy = document.createElement('input');
+            document.body.appendChild(dummy);
+            dummy.value = shareText;
+            dummy.select();
+            document.execCommand('copy');
+            document.body.removeChild(dummy);
+
+            showToast("¡Enlace copiado al portapapeles!", "success");
+        }
+
+        /* Toast Feedback */
+        function showToast(message, type = "success") {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toastMessage');
+            const toastIcon = document.getElementById('toastIcon');
+
+            toastMsg.innerText = message;
+            toastIcon.className = type === "success" 
+                ? "fa-solid fa-circle-check text-emerald-400" 
+                : "fa-solid fa-circle-info text-sky-400";
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        /* News Section Controls */
+        const NEWS_DATA = [
+            {
+                title: "Lanzamiento Exclusivo: Cápsula Moda Urbana 2026",
+                category: "Lanzamiento",
+                date: "24 Julio, 2026",
+                image: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?auto=format&fit=crop&w=800&q=80",
+                body: "Presentamos oficialmente las fotografías de nuestra colección de prendas urbanas. Con un enfoque en siluetas holgadas, tonos neutros y acabados en denims de alto gramaje, esta exhibición busca resaltar la estética minimalista de la temporada."
+            },
+            {
+                title: "Apertura de Nuestra Galería de Exhibición Presencial",
+                category: "Showroom",
+                date: "18 Julio, 2026",
+                image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=800&q=80",
+                body: "Inauguramos nuestro nuevo espacio físico de exhibición en Medellín. Un ambiente diseñado para apreciar las texturas, cortes y colores reales de cada prenda. Agenda tu cita de asesoría personalizada directamente con nuestro equipo por WhatsApp."
+            },
+            {
+                title: "Guía Visual: El Regreso del Denim Vintage",
+                category: "Tendencia",
+                date: "10 Julio, 2026",
+                image: "https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=800&q=80",
+                body: "El tejido de mezclilla continúa reinventándose. Analizamos cómo los lavados clásicos en tonos índigo y azufre se integran con cierres asimétricos y cortes oversize en las principales pasarelas internacionales."
+            }
+        ];
+
+        function scrollNews(direction) {
+            const container = document.getElementById('newsContainer');
+            container.scrollBy({ left: direction * 320, behavior: 'smooth' });
+        }
+
+        function openNewsModal(index) {
+            const item = NEWS_DATA[index];
+            if (!item) return;
+
+            document.getElementById('newsModalImg').src = item.image;
+            document.getElementById('newsModalTitle').innerText = item.title;
+            document.getElementById('newsModalBadge').innerText = item.category;
+            document.getElementById('newsModalDate').innerText = item.date;
+            document.getElementById('newsModalBody').innerText = item.body;
+
+            document.getElementById('newsModal').classList.remove('hidden');
+        }
+
+        function closeNewsModal() {
+            document.getElementById('newsModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
