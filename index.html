@@ -185,302 +185,152 @@
             <button class="filter-btn px-5 py-2.5 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition-all" data-category="runners">Runners / Atletismo</button>
         </div>
 
-        <!-- Catalog Grid -->
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="catalog-grid">
-            <!-- Items injected by JavaScript -->
-        </div>
-    </section>
+        <!-- Catalog Grid: 2 columnas en móvil, 4 columnas en PC (lg:grid-cols-4) -->
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6" id="catalog-grid">
+        <!-- Items injected by JavaScript -->
+    </div>
+</section>
 
     <!-- Why Choose Us -->
-    <section id="nosotros" class="bg-slate-900 text-white py-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">¿Por qué elegir SportPro?</h2>
-                <p class="text-slate-400 mt-3 text-lg">Diseñamos prendas pensadas para la comodidad, resistencia y estilo en el campo de juego.</p>
+<!-- Product Modal -->
+<div id="product-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+    <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl relative transform transition-all my-auto max-h-[90vh] flex flex-col md:flex-row">
+        <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full flex items-center justify-center font-bold z-20 transition-colors shadow-md">
+            <i class="fa-solid fa-xmark text-lg"></i>
+        </button>
+
+        <div class="grid md:grid-cols-2 w-full overflow-y-auto">
+            <!-- Imagen en proporción vertical 4:5 -->
+            <div class="aspect-[4/5] bg-slate-100 relative group cursor-pointer overflow-hidden w-full" onclick="openFullscreenImage()">
+                <img id="modal-img" src="" alt="" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                <div class="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 text-white font-bold text-sm bg-black/20">
+                    <i class="fa-solid fa-expand text-xl"></i>
+                    <span>Ver en pantalla completa</span>
+                </div>
+                <span class="absolute bottom-3 right-3 bg-slate-900/70 text-white text-[10px] sm:text-xs px-2.5 py-1 rounded-full backdrop-blur-sm pointer-events-none">
+                    <i class="fa-solid fa-magnifying-glass-plus mr-1"></i> Tocar para ampliar
+                </span>
             </div>
-
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-slate-800/60 border border-slate-700/50 p-8 rounded-2xl">
-                    <div class="w-14 h-14 bg-brand-500/20 text-brand-500 rounded-xl flex items-center justify-center text-2xl font-bold mb-6">
-                        <i class="fa-solid fa-shirt"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Telas Microperforadas</h3>
-                    <p class="text-slate-400">Tecnología de secado rápido (Dry-Fit) que mantiene al deportista fresco y cómodo durante todo el partido.</p>
-                </div>
-
-                <div class="bg-slate-800/60 border border-slate-700/50 p-8 rounded-2xl">
-                    <div class="w-14 h-14 bg-brand-500/20 text-brand-500 rounded-xl flex items-center justify-center text-2xl font-bold mb-6">
-                        <i class="fa-solid fa-palette"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Sublimación Digital Premium</h3>
-                    <p class="text-slate-400">Colores intensos que no se decoloran ni se desgastan con las lavadas. Posibilidades infinitas de diseño.</p>
-                </div>
-
-                <div class="bg-slate-800/60 border border-slate-700/50 p-8 rounded-2xl">
-                    <div class="w-14 h-14 bg-brand-500/20 text-brand-500 rounded-xl flex items-center justify-center text-2xl font-bold mb-6">
-                        <i class="fa-solid fa-truck-fast"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3">Envíos a Todo el País</h3>
-                    <p class="text-slate-400">Garantizamos tiempos de entrega puntuales para que tu equipo esté listo antes de su próximo torneo.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contacto" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100">
-            <div class="grid lg:grid-cols-2">
-                
-                <!-- Contact Info Panel -->
-                <div class="bg-brand-600 text-white p-8 sm:p-12 flex flex-col justify-between">
-                    <div>
-                        <h2 class="text-3xl font-extrabold mb-4">¡Ponte en contacto con nosotros!</h2>
-                        <p class="text-brand-100 mb-8 leading-relaxed">
-                            ¿Tienes dudas o quieres una cotización personalizada para tu club o institución? Escríbenos y te responderemos de inmediato.
-                        </p>
-
-                        <div class="space-y-6">
-                            <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center shrink-0">
-                                    <i class="fa-solid fa-location-dot text-lg"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-sm text-brand-100">Ubicación / Showroom</h4>
-                                    <p class="font-medium">Av. Deportiva #45-12, Ciudad Deportiva</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center shrink-0">
-                                    <i class="fa-solid fa-phone text-lg"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-sm text-brand-100">Teléfono / WhatsApp</h4>
-                                    <p class="font-medium">+57 300 123 4567</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center shrink-0">
-                                    <i class="fa-solid fa-envelope text-lg"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-sm text-brand-100">Correo Electrónico</h4>
-                                    <p class="font-medium">ventas@sportpro.com</p>
-                                </div>
-                            </div>
-
-                            <div class="flex items-start gap-4">
-                                <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center shrink-0">
-                                    <i class="fa-solid fa-clock text-lg"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold text-sm text-brand-100">Horario de Atención</h4>
-                                    <p class="font-medium">Lun - Vie: 8:00 AM - 6:00 PM | Sáb: 9:00 AM - 1:00 PM</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="pt-10">
-                        <h4 class="font-bold text-sm text-brand-100 mb-3">Síguenos en redes sociales</h4>
-                        <div class="flex gap-3">
-                            <a href="#" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors">
-                                <i class="fa-brands fa-instagram text-lg"></i>
-                            </a>
-                            <a href="#" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors">
-                                <i class="fa-brands fa-facebook-f text-lg"></i>
-                            </a>
-                            <a href="#" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors">
-                                <i class="fa-brands fa-tiktok text-lg"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quick Contact Form -->
-                <div class="p-8 sm:p-12 bg-white">
-                    <h3 class="text-2xl font-bold text-slate-900 mb-2">Solicitar Cotización</h3>
-                    <p class="text-slate-500 text-sm mb-6">Déjanos tus datos y la cantidad de uniformes que necesitas.</p>
-
-                    <form id="contact-form" class="space-y-4" onsubmit="event.preventDefault(); handleFormSubmit();">
-                        <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-1">Nombre Completo</label>
-                            <input type="text" required placeholder="Ej. Carlos Mendoza" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all">
-                        </div>
-
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div>
-                                <label class="block text-sm font-semibold text-slate-700 mb-1">Teléfono / WhatsApp</label>
-                                <input type="tel" required placeholder="+57 300 000 0000" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all">
-                            </div>
-                            <div>
-                                <label class="block text-sm font-semibold text-slate-700 mb-1">Disciplina</label>
-                                <select class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all text-slate-600">
-                                    <option>Fútbol</option>
-                                    <option>Baloncesto</option>
-                                    <option>Voleibol</option>
-                                    <option>Atletismo / Runners</option>
-                                    <option>Otro</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-1">Cantidad de prendas aprox.</label>
-                            <input type="number" min="1" placeholder="Ej. 15" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all">
-                        </div>
-
-                        <div>
-                            <label class="block text-sm font-semibold text-slate-700 mb-1">Detalles o mensaje</label>
-                            <textarea rows="3" placeholder="Describe colores, logos o requisitos específicos..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all resize-none"></textarea>
-                        </div>
-
-                        <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 rounded-xl transition-all shadow-md">
-                            Enviar Mensaje
-                        </button>
-                    </form>
+            <div class="p-6 sm:p-8 flex flex-col justify-between">
+                <div>
+                    <span id="modal-category" class="inline-block bg-brand-50 text-brand-600 font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-full mb-3"></span>
+                    <h3 id="modal-title" class="text-2xl font-black text-slate-900 mb-2"></h3>
+                    <p id="modal-desc" class="text-slate-600 text-sm leading-relaxed mb-6"></p>
                     
-                    <div id="form-success" class="hidden mt-4 p-4 bg-emerald-50 text-emerald-700 rounded-xl text-center font-medium border border-emerald-200">
-                        <i class="fa-solid fa-circle-check text-xl mb-1 block"></i>
-                        ¡Gracias! Hemos recibido tu solicitud. Te contactaremos pronto.
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-slate-900 text-slate-400 py-10 border-t border-slate-800 text-center text-sm">
-        <div class="max-w-7xl mx-auto px-4">
-            <p>© 2026 SportPro Uniformes Deportivos. Todos los derechos reservados.</p>
-        </div>
-    </footer>
-
-    <!-- Product Modal -->
-    <div id="product-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
-        <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl relative transform transition-all">
-            <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full flex items-center justify-center font-bold z-10 transition-colors">
-                <i class="fa-solid fa-xmark text-lg"></i>
-            </button>
-
-            <div class="grid md:grid-cols-2">
-                <div class="h-64 md:h-auto bg-slate-100 relative">
-                    <img id="modal-img" src="" alt="" class="w-full h-full object-cover">
-                </div>
-                <div class="p-6 sm:p-8 flex flex-col justify-between">
-                    <div>
-                        <span id="modal-category" class="inline-block bg-brand-50 text-brand-600 font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-full mb-3"></span>
-                        <h3 id="modal-title" class="text-2xl font-black text-slate-900 mb-2"></h3>
-                        <p id="modal-desc" class="text-slate-600 text-sm leading-relaxed mb-6"></p>
-                        
-                        <div class="space-y-2 text-sm text-slate-600 mb-6">
-                            <div class="flex items-center gap-2">
-                                <i class="fa-solid fa-check text-emerald-500"></i> Tela Dry-Fit Respirable
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <i class="fa-solid fa-check text-emerald-500"></i> Incluye número y nombre
-                            </div>
-                            <div class="flex items-center gap-2">
-                                <i class="fa-solid fa-check text-emerald-500"></i> Tallas desde XS hasta XXL
-                            </div>
+                    <div class="space-y-2 text-sm text-slate-600 mb-6">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-emerald-500"></i> Tela Dry-Fit Respirable
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-emerald-500"></i> Incluye número y nombre
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-emerald-500"></i> Tallas desde XS hasta XXL
                         </div>
                     </div>
-
-                    <a id="modal-whatsapp-btn" href="#" target="_blank" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3.5 rounded-xl transition-all text-center flex items-center justify-center gap-2 shadow-lg">
-                        <i class="fa-brands fa-whatsapp text-xl"></i> Cotizar este Modelo
-                    </a>
                 </div>
+
+                <a id="modal-whatsapp-btn" href="#" target="_blank" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3.5 rounded-xl transition-all text-center flex items-center justify-center gap-2 shadow-lg">
+                    <i class="fa-brands fa-whatsapp text-xl"></i> Cotizar este Modelo
+                </a>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- JavaScript Data and Interactivity -->
-    <script>
-        // Catalog Products Data
-        const products = [
-            {
-                id: 1,
-                title: "Uniforme Fútbol Elite Crimson",
-                category: "futbol",
-                categoryLabel: "Fútbol",
-                image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?auto=format&fit=crop&w=600&q=80",
-                description: "Conjunto completo de camiseta y camisilla/pantaloneta. Fabricado con microfibra de alta elasticidad para máxima movilidad en el campo de juego."
-            },
-            {
-                id: 2,
-                title: "Kit Baloncesto Hoops Pro",
-                category: "baloncesto",
-                categoryLabel: "Baloncesto",
-                image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=600&q=80",
-                description: "Camisilla holgada de malla transpirable y pantaloneta amplia. Diseño ligero pensado para libertad total en cada salto."
-            },
-            {
-                id: 3,
-                title: "Uniforme Voleibol Active Flex",
-                category: "voleibol",
-                categoryLabel: "Voleibol",
-                image: "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?auto=format&fit=crop&w=600&q=80",
-                description: "Prendas ajustadas ergonómicamente con costuras reforzadas anti-roce. Excelente resistencia al desgaste."
-            },
-            {
-                id: 4,
-                title: "Camiseta Runner Stride Light",
-                category: "runners",
-                categoryLabel: "Runners",
-                image: "https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=600&q=80",
-                description: "Camiseta ultra liviana con detalles reflectivos para entrenamientos nocturnos. Absorción rápida del sudor."
-            },
-            {
-                id: 5,
-                title: "Uniforme Fútbol Striker Neon",
-                category: "futbol",
-                categoryLabel: "Fútbol",
-                image: "https://images.unsplash.com/photo-1511886929837-354d827aae26?auto=format&fit=crop&w=600&q=80",
-                description: "Diseño moderno con colores de alto contraste sublimados en alta definición. Incluye medias deportivas de compresión."
-            },
-            {
-                id: 6,
-                title: "Conjunto Voleibol Spike Pro",
-                category: "voleibol",
-                categoryLabel: "Voleibol",
-                image: "https://images.unsplash.com/photo-1592656094267-764a45160876?auto=format&fit=crop&w=600&q=80",
-                description: "Tejido suave de secado rápido con protección UV. Ideal para voleibol de sala o de playa."
-            }
-        ];
+<!-- Fullscreen Image Lightbox Modal -->
+<div id="fullscreen-modal" class="fixed inset-0 bg-black/95 z-50 flex items-center justify-center hidden p-2 sm:p-4 transition-all" onclick="closeFullscreenImage()">
+    <button onclick="closeFullscreenImage()" class="absolute top-4 right-4 text-white hover:text-slate-300 w-12 h-12 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors z-50">
+        <i class="fa-solid fa-xmark text-2xl"></i>
+    </button>
+    <div class="relative max-w-full max-h-full flex items-center justify-center p-2" onclick="event.stopPropagation()">
+        <img id="fullscreen-img" src="" alt="Imagen ampliada" class="max-w-full max-h-[90vh] aspect-[4/5] object-contain rounded-lg shadow-2xl">
+    </div>
+</div>
 
-        // Render Catalog Products
-        function renderProducts(items) {
-            const grid = document.getElementById('catalog-grid');
-            grid.innerHTML = '';
-
-            items.forEach(product => {
-                const card = document.createElement('div');
-                card.className = "bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all group flex flex-col justify-between";
-                card.innerHTML = `
-                    <div>
-                        <div class="h-64 overflow-hidden relative bg-slate-100">
-                            <img src="${product.image}" alt="${product.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-                            <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-slate-800 font-bold text-xs px-3 py-1 rounded-full shadow-sm">
-                                ${product.categoryLabel}
-                            </span>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="font-bold text-xl text-slate-900 group-hover:text-brand-600 transition-colors mb-2">${product.title}</h3>
-                            <p class="text-slate-500 text-sm line-clamp-2">${product.description}</p>
-                        </div>
-                    </div>
-                    <div class="px-6 pb-6 pt-2">
-                        <button onclick="openModal(${product.id})" class="w-full bg-slate-100 hover:bg-brand-600 hover:text-white text-slate-700 font-bold py-3 rounded-xl transition-all text-sm flex items-center justify-center gap-2">
-                            Ver Detalle <i class="fa-solid fa-eye"></i>
-                        </button>
-                    </div>
-                `;
-                grid.appendChild(card);
-            });
+<!-- JavaScript Data and Interactivity -->
+<script>
+    // Catalog Products Data (Imágenes en proporción vertical 4:5 1080x1350)
+    const products = [
+        {
+            id: 1,
+            title: "Uniforme Fútbol Elite Crimson",
+            category: "futbol",
+            categoryLabel: "Fútbol",
+            image: "https://images.unsplash.com/photo-1517466787929-bc90951d0974?auto=format&fit=crop&w=1080&h=1350&q=80",
+            description: "Conjunto completo de camiseta y camisilla/pantaloneta. Fabricado con microfibra de alta elasticidad para máxima movilidad en el campo de juego."
+        },
+        {
+            id: 2,
+            title: "Kit Baloncesto Hoops Pro",
+            category: "baloncesto",
+            categoryLabel: "Baloncesto",
+            image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1080&h=1350&q=80",
+            description: "Camisilla holgada de malla transpirable y pantaloneta amplia. Diseño ligero pensado para libertad total en cada salto."
+        },
+        {
+            id: 3,
+            title: "Uniforme Voleibol Active Flex",
+            category: "voleibol",
+            categoryLabel: "Voleibol",
+            image: "https://images.unsplash.com/photo-1592656094267-764a45160876?auto=format&fit=crop&w=1080&h=1350&q=80",
+            description: "Prendas ajustadas ergonómicamente con costuras reforzadas anti-roce. Excelente resistencia al desgaste."
+        },
+        {
+            id: 4,
+            title: "Camiseta Runner Stride Light",
+            category: "runners",
+            categoryLabel: "Runners",
+            image: "https://images.unsplash.com/photo-1502904550040-7534597429ae?auto=format&fit=crop&w=1080&h=1350&q=80",
+            description: "Camiseta ultra liviana con detalles reflectivos para entrenamientos nocturnos. Absorción rápida del sudor."
+        },
+        {
+            id: 5,
+            title: "Uniforme Fútbol Striker Neon",
+            category: "futbol",
+            categoryLabel: "Fútbol",
+            image: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1080&h=1350&q=80",
+            description: "Diseño moderno con colores de alto contraste sublimados en alta definición. Incluye medias deportivas de compresión."
+        },
+        {
+            id: 6,
+            title: "Conjunto Voleibol Spike Pro",
+            category: "voleibol",
+            categoryLabel: "Voleibol",
+            image: "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?auto=format&fit=crop&w=1080&h=1350&q=80",
+            description: "Tejido suave de secado rápido con protección UV. Ideal para voleibol de sala o de playa."
         }
+    ];
+
+    // Render Catalog Products (proporción vertical 4:5 1080x1350)
+    function renderProducts(items) {
+        const grid = document.getElementById('catalog-grid');
+        grid.innerHTML = '';
+
+        items.forEach(product => {
+            const card = document.createElement('div');
+            card.className = "bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all cursor-pointer group flex flex-col relative";
+            card.onclick = () => openModal(product.id);
+            
+            card.innerHTML = `
+                <div class="aspect-[4/5] overflow-hidden relative bg-slate-100 w-full">
+                    <img src="${product.image}" alt="${product.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    <span class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-white/90 backdrop-blur-sm text-slate-800 font-bold text-[10px] sm:text-xs px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full shadow-sm">
+                        ${product.categoryLabel}
+                    </span>
+                    <div class="absolute inset-0 bg-slate-900/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <span class="bg-white/90 text-slate-900 font-bold text-xs sm:text-sm px-4 py-2 rounded-full shadow-md flex items-center gap-1.5">
+                            <i class="fa-solid fa-eye"></i> Ver detalle
+                        </span>
+                    </div>
+                </div>
+                <div class="p-3 sm:p-4 text-center bg-white border-t border-slate-50">
+                    <h3 class="font-bold text-xs sm:text-sm text-slate-900 group-hover:text-brand-600 transition-colors line-clamp-1">${product.title}</h3>
+                </div>
+            `;
+            grid.appendChild(card);
+        });
+    }
 
         // Filter Functionality
         const filterBtns = document.querySelectorAll('.filter-btn');
@@ -522,6 +372,19 @@
 
         function closeModal() {
             document.getElementById('product-modal').classList.add('hidden');
+        }
+
+        // Fullscreen Image Lightbox Functions
+        function openFullscreenImage() {
+            const currentImgSrc = document.getElementById('modal-img').src;
+            if (!currentImgSrc) return;
+            
+            document.getElementById('fullscreen-img').src = currentImgSrc;
+            document.getElementById('fullscreen-modal').classList.remove('hidden');
+        }
+
+        function closeFullscreenImage() {
+            document.getElementById('fullscreen-modal').classList.add('hidden');
         }
 
         // Mobile Menu Toggle
