@@ -1,493 +1,526 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Uniformes Deportivos</title>
-    <!-- Tailwind CSS CDN -->
+    <title>SportPro - Uniformes Deportivos de Alta Calidad</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
                     colors: {
                         brand: {
-                            50: '#f0fdf4',
-                            500: '#22c55e',
-                            600: '#16a34a',
-                            700: '#15803d',
-                            900: '#14532d',
-                        },
-                        dark: {
-                            800: '#1e293b',
-                            900: '#0f172a'
+                            50: '#f0f6ff',
+                            100: '#e0edff',
+                            500: '#2563eb',
+                            600: '#1d4ed8',
+                            700: '#1e40af',
+                            accent: '#ff4757',
+                            accentHover: '#ff6b81'
                         }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'system-ui', 'sans-serif'],
                     }
                 }
             }
         }
     </script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Inter', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(135deg, #2563eb 0%, #ff4757 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-bg {
+            background-image: linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.9)), url('https://images.unsplash.com/photo-1517649763962-0c623266ddc0?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+        }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 antialiased min-h-screen flex flex-col justify-between">
+<body class="bg-slate-50 font-sans text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
 
-    <!-- Header / Nav -->
-<header class="sticky top-0 z-30 bg-slate-900/95 border-b border-slate-800 shadow-sm backdrop-blur-md">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        
-        <!-- Brand Logo / Name -->
-        <div class="flex items-center gap-3 cursor-pointer" onclick="showCatalogView()">
-            <div class="w-12 h-13 flex-shrink-0">
-                <img class="w-full h-full object-contain" src="imgs/LS WHITE.png" alt="Logo LS">
-            </div>
-            <div>
-                <h1 class="font-bold text-white text-xs sm:text-base leading-tight">CATÁLOGO DE DISEÑOS</h1>
-                <p class="text-[10px] sm:text-xs text-slate-400 font-medium">Diseños</p>
-            </div>
-        </div>
-
-        <!-- Quick WhatsApp CTA Header -->
-        <a href="https://wa.me/message/FHCPOCCIA4RBC1" target="_blank" rel="noopener noreferrer" 
-           class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-1.5 rounded-full text-xs sm:text-sm font-semibold shadow-sm flex-shrink-0">
-            <svg class="w-4 h-4 sm:w-5 sm:h-5 fill-current" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.382a9.87 9.87 0 01-1.51-5.26c0-5.45 4.43-9.88 9.88-9.88 2.64 0 5.12 1.03 6.98 2.89a9.82 9.82 0 012.89 6.98c-.01 5.44-4.44 9.87-9.88 9.87z"/>
-            </svg>
-            <span class="hidden sm:inline">Whatsapp</span>
-            <span class="sm:hidden">Contacto</span>
-        </a> 
-    </div>
-</header>
-
-    <!-- Hero Compacto -->
-    <section class="bg-slate-900 border-b border-slate-800 text-white py-8 px-4 sm:px-6 text-center relative overflow-hidden">
-        <div class="max-w-3xl mx-auto space-y-2">
-            <span class="inline-block px-3 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full text-xs font-semibold uppercase tracking-wider">
-                Colección 2026
-            </span>
-            <h2 class="text-2xl sm:text-4xl font-extrabold tracking-tight">Uniformes de Alta Competición</h2>
-            <p class="text-slate-400 text-sm sm:text-base max-w-xl mx-auto">
-                Modelos sublimados y personalizados para equipos. Elige tu diseño favorito y cotiza directamente con nosotros.
-            </p>
-        </div>
-    </section>
-
-    <!-- Contenedor Principal -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full flex-grow">
-        
-        <!-- ================= PAGE 1: CATALOG GRID VIEW ================= -->
-        <div id="catalogView" class="space-y-6">
-            <!-- Controls: Search & Category Filters -->
-            <div class="space-y-4">
-                <!-- Search Input -->
-                <div class="max-w-md mx-auto relative">
-                    <input type="text" id="searchInput" placeholder="Buscar por modelo o disciplina..." 
-                           class="w-full pl-10 pr-4 py-2.5 bg-slate-900 border border-slate-800 rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent shadow-sm">
-                    <svg class="w-5 h-5 text-slate-500 absolute left-3 top-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                    </svg>
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md shadow-sm border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex items-center gap-2">
+                    <div class="w-10 h-10 bg-brand-600 text-white rounded-xl flex items-center justify-center font-black text-xl shadow-lg shadow-brand-500/30">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <span class="text-2xl font-extrabold tracking-tight text-slate-900">SPORT<span class="text-brand-600">PRO</span></span>
                 </div>
 
-                <!-- Discipline Filter Buttons -->
-                <div class="flex items-center justify-start sm:justify-center gap-2 overflow-x-auto pb-2 scrollbar-none" id="categoryContainer">
-                    <button onclick="filterCategory('todos')" class="cat-btn active bg-emerald-600 text-white px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap">
-                        Todos
-                    </button>
-                    <button onclick="filterCategory('futbol')" class="cat-btn bg-slate-900 border border-slate-800 text-slate-300 hover:bg-slate-800 px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap">
-                        Fútbol
-                    </button>
-                    <button onclick="filterCategory('baloncesto')" class="cat-btn bg-slate-900 border border-slate-800 text-slate-300 hover:bg-slate-800 px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap">
-                        Baloncesto
-                    </button>
-                    <button onclick="filterCategory('voleibol')" class="cat-btn bg-slate-900 border border-slate-800 text-slate-300 hover:bg-slate-800 px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap">
-                        Voleibol
-                    </button>
-                    <button onclick="filterCategory('petos')" class="cat-btn bg-slate-900 border border-slate-800 text-slate-300 hover:bg-slate-800 px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap">
-                        Petos
-                    </button>
-                    <button onclick="filterCategory('presentación')" class="cat-btn bg-slate-900 border border-slate-800 text-slate-300 hover:bg-slate-800 px-4 py-1.5 rounded-full text-xs font-medium whitespace-nowrap">
-                        Presentación
-                    </button>
+                <!-- Navigation Desktop -->
+                <nav class="hidden md:flex items-center gap-8 font-semibold text-slate-600">
+                    <a href="#inicio" class="hover:text-brand-600 transition-colors">Inicio</a>
+                    <a href="#catalogo" class="hover:text-brand-600 transition-colors">Catálogo</a>
+                    <a href="#nosotros" class="hover:text-brand-600 transition-colors">Beneficios</a>
+                    <a href="#contacto" class="hover:text-brand-600 transition-colors">Contacto</a>
+                </nav>
+
+                <!-- Action Button -->
+                <div class="hidden md:flex items-center gap-4">
+                    <a href="https://wa.me/1234567890?text=Hola,%20quisiera%20cotizar%20uniformes" target="_blank" class="bg-emerald-500 hover:bg-emerald-600 text-white px-5 py-2.5 rounded-full font-bold text-sm transition-all shadow-md hover:shadow-lg flex items-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i> Cotizar WhatsApp
+                    </a>
                 </div>
-            </div>
 
-            <!-- Catalog Grid -->
-            <div id="catalogGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6">
-                <!-- Items generated via JS -->
-            </div>
-
-            <!-- Empty state message -->
-            <div id="emptyState" class="hidden text-center py-12">
-                <p class="text-slate-400 font-medium">No se encontraron modelos que coincidan con tu búsqueda.</p>
-                <button onclick="resetFilters()" class="mt-3 text-emerald-400 font-semibold hover:underline text-sm">
-                    Ver todos los uniformes
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-slate-700 hover:text-brand-600 focus:outline-none p-2">
+                    <i class="fa-solid fa-bars text-2xl"></i>
                 </button>
             </div>
         </div>
 
-        <!-- ================= PAGE 2: INDIVIDUAL PRODUCT DETAIL PAGE ================= -->
-        <div id="detailView" class="hidden space-y-6">
-            <!-- Back Navigation Bar -->
-            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
-                <button onclick="showCatalogView()" class="inline-flex items-center gap-2 bg-slate-900 border border-slate-800 text-slate-200 hover:bg-slate-800 px-4 py-2 rounded-xl text-sm font-semibold shadow-sm">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
-                    </svg>
-                    Volver al catálogo
-                </button>
-                <span class="text-xs text-slate-400 font-medium hidden sm:inline">Detalle del Producto</span>
-            </div>
-
-            <!-- 2-Column Product Detail Layout -->
-            <div class="bg-slate-900 rounded-2xl border border-slate-800 p-6 shadow-sm">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-                    
-                    <!-- Left Column: 4:5 Image + Front/Back View Selector -->
-                    <div class="lg:col-span-5 flex flex-col items-center">
-                        <div class="relative w-full aspect-[4/5] bg-slate-950 rounded-xl overflow-hidden shadow-inner border border-slate-800">
-                            <img id="detailImg" src="" alt="Uniforme Deportivo" class="w-full h-full object-cover">
-                            
-                            <!-- Category Badge (Top Left) -->
-                            <span id="detailCategory" class="absolute top-3 left-3 bg-emerald-600 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm"></span>
-                            
-                            <!-- REF Badge (Top Right) -->
-                            <span id="detailRefBadge" class="absolute top-3 right-3 bg-red-600 text-white text-[11px] font-bold font-mono px-3 py-1 rounded-full uppercase tracking-wider shadow-sm hidden"></span>
-                        </div>
-
-                        <!-- Miniaturas / Thumbnails: Frente / Dorsal -->
-                        <div class="flex items-center gap-3 mt-4">
-                            <button id="thumbDetailFront" onclick="switchDetailView('front')" class="flex-1 aspect-square max-h-24 rounded-xl overflow-hidden border-2 border-emerald-500 relative bg-slate-950 focus:outline-none shadow-md">
-                                <img id="thumbImgFront" src="" alt="Vista Frente" class="w-full h-full object-cover">
-                                <span class="absolute bottom-1 left-1/2 -translate-x-1/2 bg-slate-950/80 text-[10px] text-white font-bold px-2 py-0.5 rounded-full whitespace-nowrap">Frente</span>
-                            </button>
-                            <button id="thumbDetailBack" onclick="switchDetailView('back')" class="flex-1 aspect-square max-h-24 rounded-xl overflow-hidden border-2 border-slate-800 opacity-60 hover:opacity-100 relative bg-slate-950 focus:outline-none">
-                                <img id="thumbImgBack" src="" alt="Vista Dorsal" class="w-full h-full object-cover">
-                                <span class="absolute bottom-1 left-1/2 -translate-x-1/2 bg-slate-950/80 text-[10px] text-slate-300 font-bold px-2 py-0.5 rounded-full whitespace-nowrap">Dorsal</span>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Right Column: Description & Technical Details -->
-                    <div class="lg:col-span-7 flex flex-col justify-between space-y-6 pt-2">
-                        <div class="space-y-3">
-                            <span id="detailRefCode" class="text-xs text-emerald-400 font-bold font-mono block"></span>
-                            <h2 id="detailTitle" class="text-3xl font-extrabold text-white"></h2>
-                            <p id="detailDesc" class="text-slate-300 text-base leading-relaxed"></p>
-                        </div>
-
-                        <!-- Features list -->
-                        <div class="space-y-3 pt-2">
-                            <h3 class="text-xs font-bold uppercase text-slate-400 tracking-wider">Características técnicas</h3>
-                            <div id="detailFeatures" class="flex flex-wrap gap-2"></div>
-                        </div>
-
-                        <!-- CTA Action -->
-                        <div class="pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center gap-3">
-                            <a id="detailWhatsAppBtn" href="" target="_blank" rel="noopener noreferrer" 
-                               class="w-full inline-flex items-center justify-center gap-2 bg-emerald-600 hover:bg-emerald-500 text-white px-6 py-3 rounded-xl text-base font-semibold shadow-md">
-                                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.382a9.87 9.87 0 01-1.51-5.26c0-5.45 4.43-9.88 9.88-9.88 2.64 0 5.12 1.03 6.98 2.89a9.82 9.82 0 012.89 6.98c-.01 5.44-4.44 9.87-9.88 9.87z"/>
-                                </svg>
-                                ¡¡Equípate ahora!!
-                            </a>
-                            <button onclick="showCatalogView()" class="w-full sm:w-auto px-5 py-3 bg-slate-800 hover:bg-slate-700 text-slate-200 font-medium rounded-xl text-sm">
-                                Volver
-                            </button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-6 space-y-3">
+            <a href="#inicio" class="block py-2 font-semibold text-slate-700 hover:text-brand-600">Inicio</a>
+            <a href="#catalogo" class="block py-2 font-semibold text-slate-700 hover:text-brand-600">Catálogo</a>
+            <a href="#nosotros" class="block py-2 font-semibold text-slate-700 hover:text-brand-600">Beneficios</a>
+            <a href="#contacto" class="block py-2 font-semibold text-slate-700 hover:text-brand-600">Contacto</a>
+            <a href="https://wa.me/1234567890?text=Hola,%20quisiera%20cotizar%20uniformes" target="_blank" class="w-full bg-emerald-500 text-white py-3 rounded-xl font-bold text-center block mt-4 flex items-center justify-center gap-2">
+                <i class="fa-brands fa-whatsapp text-xl"></i> Cotizar por WhatsApp
+            </a>
         </div>
-    </main>
+    </header>
 
-    <!-- Footer -->
-    <!-- Footer Completo -->
-        <footer class="bg-slate-900 border-t border-slate-800 mt-12 py-12">
-            <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                
-                <!-- Información de contacto -->
-                <div class="space-y-4 text-slate-400">
-                    <h3 class="text-white font-bold text-lg">Contacto & Ubicación</h3>
-                    <p class="text-sm">¿Tienes dudas sobre nuestros uniformes? Escríbenos o visítanos.</p>
-                    <div class="space-y-2 text-sm">
-                        <p>📍 Carrera 8 #9 - 49 Pitalito, Huila</p>
-                        <p>📞 Teléfono: +57 314 3022180</p>
-                        <p>✉️ Email: leon.sport.024@gmail.com</p>
-                    </div>
-                    <div class="pt-4">
-                        <a href="https://wa.me/message/FHCPOCCIA4RBC1" target="_blank" 
-                           class="inline-block bg-emerald-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-emerald-500 transition">
-                            Escríbenos por WhatsApp
+    <!-- Hero Section -->
+    <section id="inicio" class="hero-bg text-white py-24 lg:py-32 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center md:text-left">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <span class="inline-block bg-brand-500/20 text-brand-100 border border-brand-500/30 font-semibold px-4 py-1.5 rounded-full text-sm backdrop-blur-sm">
+                        ⚡ Uniformes Personalizados de Alto Rendimiento
+                    </span>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black leading-tight">
+                        Equipa a tu equipo con la <span class="gradient-text">mejor calidad</span>
+                    </h1>
+                    <p class="text-slate-300 text-lg sm:text-xl max-w-xl font-normal leading-relaxed">
+                        Diseñamos y fabricamos uniformes deportivos para fútbol, baloncesto, voleibol, atletismo y más. Telas transpirables, duraderas y diseños 100% personalizados.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
+                        <a href="#catalogo" class="bg-brand-600 hover:bg-brand-700 text-white px-8 py-4 rounded-xl font-bold text-center transition-all shadow-lg hover:shadow-brand-500/50 flex items-center justify-center gap-2">
+                            Ver Catálogo <i class="fa-solid fa-arrow-down"></i>
+                        </a>
+                        <a href="#contacto" class="bg-white/10 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-xl font-bold text-center backdrop-blur-sm transition-all flex items-center justify-center gap-2">
+                            Solicitar Cotización
                         </a>
                     </div>
                 </div>
-            
-                <!-- Mapa de Google (Reemplaza el SRC por tu dirección real) -->
-                <div class="w-full h-64 rounded-xl overflow-hidden border border-slate-700 shadow-lg">
-                    <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3987.724940541832!2d-76.04912202426432!3d1.8561115597378801!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e250b030b3b9963%3A0xd503c9e692c18908!2sLeon%20Sport%20Deportivos!5e0!3m2!1ses!2sco!4v1787089484790!5m2!1ses!2sco" 
-                        width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
-                    </iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stat Highlights -->
+    <section class="bg-white py-8 border-b border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div class="p-4">
+                    <div class="text-3xl font-extrabold text-brand-600">+500</div>
+                    <div class="text-sm font-medium text-slate-500 mt-1">Equipos Equipados</div>
+                </div>
+                <div class="p-4">
+                    <div class="text-3xl font-extrabold text-brand-600">100%</div>
+                    <div class="text-sm font-medium text-slate-500 mt-1">Personalizable</div>
+                </div>
+                <div class="p-4">
+                    <div class="text-3xl font-extrabold text-brand-600">DryFit</div>
+                    <div class="text-sm font-medium text-slate-500 mt-1">Telas Inteligentes</div>
+                </div>
+                <div class="p-4">
+                    <div class="text-3xl font-extrabold text-brand-600">5-7 Días</div>
+                    <div class="text-sm font-medium text-slate-500 mt-1">Entrega Rápida</div>
                 </div>
             </div>
-            
-            <!-- Copyright -->
-            <div class="text-center text-slate-500 text-xs mt-10 border-t border-slate-800 pt-6">
-                <p>© 2026 Leon Sport Deportivos. Todos los derechos reservados.</p>
-            </div>
-        </footer>
+        </div>
+    </section>
 
+    <!-- Catalog Section -->
+    <section id="catalogo" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-12">
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">Nuestro Catálogo</h2>
+            <p class="text-slate-600 mt-3 text-lg">Explora nuestras colecciones por disciplina. Todos los modelos se pueden adaptar con los colores y logos de tu equipo.</p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap justify-center gap-2 mb-10" id="filter-buttons">
+            <button class="filter-btn active px-5 py-2.5 rounded-full font-bold text-sm bg-brand-600 text-white transition-all shadow-md" data-category="todos">Todos</button>
+            <button class="filter-btn px-5 py-2.5 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition-all" data-category="futbol">Fútbol</button>
+            <button class="filter-btn px-5 py-2.5 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition-all" data-category="baloncesto">Baloncesto</button>
+            <button class="filter-btn px-5 py-2.5 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition-all" data-category="voleibol">Voleibol</button>
+            <button class="filter-btn px-5 py-2.5 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition-all" data-category="runners">Runners / Atletismo</button>
+        </div>
+
+        <!-- Catalog Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="catalog-grid">
+            <!-- Items injected by JavaScript -->
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="nosotros" class="bg-slate-900 text-white py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-3xl sm:text-4xl font-extrabold tracking-tight">¿Por qué elegir SportPro?</h2>
+                <p class="text-slate-400 mt-3 text-lg">Diseñamos prendas pensadas para la comodidad, resistencia y estilo en el campo de juego.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-800/60 border border-slate-700/50 p-8 rounded-2xl">
+                    <div class="w-14 h-14 bg-brand-500/20 text-brand-500 rounded-xl flex items-center justify-center text-2xl font-bold mb-6">
+                        <i class="fa-solid fa-shirt"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Telas Microperforadas</h3>
+                    <p class="text-slate-400">Tecnología de secado rápido (Dry-Fit) que mantiene al deportista fresco y cómodo durante todo el partido.</p>
+                </div>
+
+                <div class="bg-slate-800/60 border border-slate-700/50 p-8 rounded-2xl">
+                    <div class="w-14 h-14 bg-brand-500/20 text-brand-500 rounded-xl flex items-center justify-center text-2xl font-bold mb-6">
+                        <i class="fa-solid fa-palette"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Sublimación Digital Premium</h3>
+                    <p class="text-slate-400">Colores intensos que no se decoloran ni se desgastan con las lavadas. Posibilidades infinitas de diseño.</p>
+                </div>
+
+                <div class="bg-slate-800/60 border border-slate-700/50 p-8 rounded-2xl">
+                    <div class="w-14 h-14 bg-brand-500/20 text-brand-500 rounded-xl flex items-center justify-center text-2xl font-bold mb-6">
+                        <i class="fa-solid fa-truck-fast"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Envíos a Todo el País</h3>
+                    <p class="text-slate-400">Garantizamos tiempos de entrega puntuales para que tu equipo esté listo antes de su próximo torneo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contacto" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-3xl shadow-xl overflow-hidden border border-slate-100">
+            <div class="grid lg:grid-cols-2">
+                
+                <!-- Contact Info Panel -->
+                <div class="bg-brand-600 text-white p-8 sm:p-12 flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-3xl font-extrabold mb-4">¡Ponte en contacto con nosotros!</h2>
+                        <p class="text-brand-100 mb-8 leading-relaxed">
+                            ¿Tienes dudas o quieres una cotización personalizada para tu club o institución? Escríbenos y te responderemos de inmediato.
+                        </p>
+
+                        <div class="space-y-6">
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-location-dot text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm text-brand-100">Ubicación / Showroom</h4>
+                                    <p class="font-medium">Av. Deportiva #45-12, Ciudad Deportiva</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-phone text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm text-brand-100">Teléfono / WhatsApp</h4>
+                                    <p class="font-medium">+57 300 123 4567</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-envelope text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm text-brand-100">Correo Electrónico</h4>
+                                    <p class="font-medium">ventas@sportpro.com</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4">
+                                <div class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center shrink-0">
+                                    <i class="fa-solid fa-clock text-lg"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-sm text-brand-100">Horario de Atención</h4>
+                                    <p class="font-medium">Lun - Vie: 8:00 AM - 6:00 PM | Sáb: 9:00 AM - 1:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-10">
+                        <h4 class="font-bold text-sm text-brand-100 mb-3">Síguenos en redes sociales</h4>
+                        <div class="flex gap-3">
+                            <a href="#" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors">
+                                <i class="fa-brands fa-instagram text-lg"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors">
+                                <i class="fa-brands fa-facebook-f text-lg"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center transition-colors">
+                                <i class="fa-brands fa-tiktok text-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Contact Form -->
+                <div class="p-8 sm:p-12 bg-white">
+                    <h3 class="text-2xl font-bold text-slate-900 mb-2">Solicitar Cotización</h3>
+                    <p class="text-slate-500 text-sm mb-6">Déjanos tus datos y la cantidad de uniformes que necesitas.</p>
+
+                    <form id="contact-form" class="space-y-4" onsubmit="event.preventDefault(); handleFormSubmit();">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1">Nombre Completo</label>
+                            <input type="text" required placeholder="Ej. Carlos Mendoza" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-1">Teléfono / WhatsApp</label>
+                                <input type="tel" required placeholder="+57 300 000 0000" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-1">Disciplina</label>
+                                <select class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all text-slate-600">
+                                    <option>Fútbol</option>
+                                    <option>Baloncesto</option>
+                                    <option>Voleibol</option>
+                                    <option>Atletismo / Runners</option>
+                                    <option>Otro</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1">Cantidad de prendas aprox.</label>
+                            <input type="number" min="1" placeholder="Ej. 15" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-1">Detalles o mensaje</label>
+                            <textarea rows="3" placeholder="Describe colores, logos o requisitos específicos..." class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-brand-500 focus:border-transparent outline-none transition-all resize-none"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-4 rounded-xl transition-all shadow-md">
+                            Enviar Mensaje
+                        </button>
+                    </form>
+                    
+                    <div id="form-success" class="hidden mt-4 p-4 bg-emerald-50 text-emerald-700 rounded-xl text-center font-medium border border-emerald-200">
+                        <i class="fa-solid fa-circle-check text-xl mb-1 block"></i>
+                        ¡Gracias! Hemos recibido tu solicitud. Te contactaremos pronto.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-10 border-t border-slate-800 text-center text-sm">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>© 2026 SportPro Uniformes Deportivos. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Product Modal -->
+    <div id="product-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white rounded-3xl max-w-2xl w-full overflow-hidden shadow-2xl relative transform transition-all">
+            <button onclick="closeModal()" class="absolute top-4 right-4 w-10 h-10 bg-slate-100 hover:bg-slate-200 text-slate-600 rounded-full flex items-center justify-center font-bold z-10 transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="grid md:grid-cols-2">
+                <div class="h-64 md:h-auto bg-slate-100 relative">
+                    <img id="modal-img" src="" alt="" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6 sm:p-8 flex flex-col justify-between">
+                    <div>
+                        <span id="modal-category" class="inline-block bg-brand-50 text-brand-600 font-bold text-xs uppercase tracking-wider px-3 py-1 rounded-full mb-3"></span>
+                        <h3 id="modal-title" class="text-2xl font-black text-slate-900 mb-2"></h3>
+                        <p id="modal-desc" class="text-slate-600 text-sm leading-relaxed mb-6"></p>
+                        
+                        <div class="space-y-2 text-sm text-slate-600 mb-6">
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-500"></i> Tela Dry-Fit Respirable
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-500"></i> Incluye número y nombre
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <i class="fa-solid fa-check text-emerald-500"></i> Tallas desde XS hasta XXL
+                            </div>
+                        </div>
+                    </div>
+
+                    <a id="modal-whatsapp-btn" href="#" target="_blank" class="w-full bg-emerald-500 hover:bg-emerald-600 text-white font-bold py-3.5 rounded-xl transition-all text-center flex items-center justify-center gap-2 shadow-lg">
+                        <i class="fa-brands fa-whatsapp text-xl"></i> Cotizar este Modelo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Data and Interactivity -->
     <script>
-        const uniformsData = [
+        // Catalog Products Data
+        const products = [
             {
-                id: 'REF-FUT01',
-                title: 'Kit Fútbol "Apex Pro"',
-                category: 'futbol',
-                categoryLabel: 'Fútbol',
-                image: 'https://i0.wp.com/paginadelespanol.com/wp-content/uploads/2018/08/Definiciones-sobre-futbol.png?fit=1300%2C1800&ssl=1',
-                imageBack: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=800&q=80',
-                description: 'Diseño geométrico de alto impacto. Camiseta y chort con tecnología de secado rápido y paneles de ventilación lateral.',
-                tags: ['Diseños Editables', 'Sublimado Total', 'Todas las Tallas ']
+                id: 1,
+                title: "Uniforme Fútbol Elite Crimson",
+                category: "futbol",
+                categoryLabel: "Fútbol",
+                image: "https://images.unsplash.com/photo-1577223625816-7546f13df25d?auto=format&fit=crop&w=600&q=80",
+                description: "Conjunto completo de camiseta y camisilla/pantaloneta. Fabricado con microfibra de alta elasticidad para máxima movilidad en el campo de juego."
             },
             {
-                id: 'REF-FUT02',
-                title: 'Conjunto Fútbol "Strikers Gold"',
-                category: 'futbol',
-                categoryLabel: 'Fútbol',
-                image: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80',
-                imageBack: 'https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=800&q=80',
-                description: 'Estilo clásico renovado con finos detalles dorados. Tela ultraligera anti-adherente para máxima libertad de movimiento.',
-                tags: ['Tela Transpirable', 'Cuello V Anatómico', 'Personalizable']
+                id: 2,
+                title: "Kit Baloncesto Hoops Pro",
+                category: "baloncesto",
+                categoryLabel: "Baloncesto",
+                image: "https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=600&q=80",
+                description: "Camisilla holgada de malla transpirable y pantaloneta amplia. Diseño ligero pensado para libertad total en cada salto."
             },
             {
-                id: 'REF-BAL01',
-                title: 'Uniforme Baloncesto "Hoop Legend"',
-                category: 'baloncesto',
-                categoryLabel: 'Baloncesto',
-                image: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&q=80',
-                imageBack: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=800&q=80',
-                description: 'Camiseta esqueleto holgada y pantaloneta larga. Red de microfibra altamente respirable para juegos intensos.',
-                tags: ['Malla Micro-Mesh', 'Corte Holgado', 'Resistente al estiramiento']
+                id: 3,
+                title: "Uniforme Voleibol Active Flex",
+                category: "voleibol",
+                categoryLabel: "Voleibol",
+                image: "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?auto=format&fit=crop&w=600&q=80",
+                description: "Prendas ajustadas ergonómicamente con costuras reforzadas anti-roce. Excelente resistencia al desgaste."
             },
             {
-                id: 'REF-BAL02',
-                title: 'Kit Baloncesto "Urban Dunk"',
-                category: 'baloncesto',
-                categoryLabel: 'Baloncesto',
-                image: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=800&q=80',
-                imageBack: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?auto=format&fit=crop&w=800&q=80',
-                description: 'Diseño urbano moderno con degradado cromático. Ideal para torneos universitarios y ligas profesionales.',
-                tags: ['Costuras Reforzadas', 'Anti-Transpirante', 'Sublimación HD']
+                id: 4,
+                title: "Camiseta Runner Stride Light",
+                category: "runners",
+                categoryLabel: "Runners",
+                image: "https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=600&q=80",
+                description: "Camiseta ultra liviana con detalles reflectivos para entrenamientos nocturnos. Absorción rápida del sudor."
             },
             {
-                id: 'REF-VOL01',
-                title: 'Uniforme Voleibol "Spike Elite"',
-                category: 'voleibol',
-                categoryLabel: 'Voleibol',
-                image: 'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?auto=format&fit=crop&w=800&q=80',
-                imageBack: 'https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=800&q=80',
-                description: 'Ajuste ergonómico que facilita el salto y la movilidad de brazos. Disponible en versión femenina y masculina.',
-                tags: ['Elastano Flex', 'Ajuste Anatómico', 'Secado Ultrarrápido']
+                id: 5,
+                title: "Uniforme Fútbol Striker Neon",
+                category: "futbol",
+                categoryLabel: "Fútbol",
+                image: "https://images.unsplash.com/photo-1511886929837-354d827aae26?auto=format&fit=crop&w=600&q=80",
+                description: "Diseño moderno con colores de alto contraste sublimados en alta definición. Incluye medias deportivas de compresión."
             },
             {
-                id: 'REF-RUN01',
-                title: 'Camiseta Petos "Velocity Zero"',
-                category: 'petos',
-                categoryLabel: 'Petos',
-                image: 'https://images.unsplash.com/photo-1530549387789-4c1017266635?auto=format&fit=crop&w=800&q=80',
-                imageBack: 'https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?auto=format&fit=crop&w=800&q=80',
-                description: 'Diseñada para largas distancias. Ultra liviana con detalles reflectivos para entrenamientos nocturnos.',
-                tags: ['Ultraligera 90g', 'Reflectivo 360°', 'Anti-roces']
-            },
-            {
-                id: 'REF-CIC01',
-                title: 'Jersey Presentación "Tour Pro"',
-                category: 'presentación',
-                categoryLabel: 'Presentación',
-                image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=80',
-                imageBack: 'https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=800&q=80',
-                description: 'Cremallera completa con 3 bolsillos posteriores. Borde de silicona antideslizante en la cintura.',
-                tags: ['Cremallera YKK', 'Bolsillos Posteriores', 'Grip Silicona']
-            },
-            {
-                id: 'REF-FUT03',
-                title: 'Kit Arquero "Shield Guardian"',
-                category: 'futbol',
-                categoryLabel: 'Fútbol',
-                image: 'https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=800&q=80',
-                imageBack: 'https://images.unsplash.com/photo-1518091043644-c1d4457512c6?auto=format&fit=crop&w=800&q=80',
-                description: 'Buzo y pantaloneta de portero. Opción con protección acolchada en codos y antebrazos.',
-                tags: ['Protección Opcional', 'Alta Visibilidad', 'Reforzado']
+                id: 6,
+                title: "Conjunto Voleibol Spike Pro",
+                category: "voleibol",
+                categoryLabel: "Voleibol",
+                image: "https://images.unsplash.com/photo-1592656094267-764a45160876?auto=format&fit=crop&w=600&q=80",
+                description: "Tejido suave de secado rápido con protección UV. Ideal para voleibol de sala o de playa."
             }
         ];
 
-        let currentCategory = 'todos';
-        let searchQuery = '';
-        let activeItem = null;
-        let activeView = 'front';
+        // Render Catalog Products
+        function renderProducts(items) {
+            const grid = document.getElementById('catalog-grid');
+            grid.innerHTML = '';
 
-        // Renderizado inicial
-        document.addEventListener('DOMContentLoaded', () => {
-            renderCatalog();
+            items.forEach(product => {
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-xl transition-all group flex flex-col justify-between";
+                card.innerHTML = `
+                    <div>
+                        <div class="h-64 overflow-hidden relative bg-slate-100">
+                            <img src="${product.image}" alt="${product.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                            <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-slate-800 font-bold text-xs px-3 py-1 rounded-full shadow-sm">
+                                ${product.categoryLabel}
+                            </span>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-bold text-xl text-slate-900 group-hover:text-brand-600 transition-colors mb-2">${product.title}</h3>
+                            <p class="text-slate-500 text-sm line-clamp-2">${product.description}</p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-2">
+                        <button onclick="openModal(${product.id})" class="w-full bg-slate-100 hover:bg-brand-600 hover:text-white text-slate-700 font-bold py-3 rounded-xl transition-all text-sm flex items-center justify-center gap-2">
+                            Ver Detalle <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
 
-            // Escuchar cambios en la búsqueda
-            document.getElementById('searchInput').addEventListener('input', (e) => {
-                searchQuery = e.target.value.toLowerCase().trim();
-                renderCatalog();
+        // Filter Functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-brand-600', 'text-white', 'shadow-md');
+                    b.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+                });
+
+                btn.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+                btn.classList.add('bg-brand-600', 'text-white', 'shadow-md');
+
+                const category = btn.getAttribute('data-category');
+                if (category === 'todos') {
+                    renderProducts(products);
+                } else {
+                    const filtered = products.filter(p => p.category === category);
+                    renderProducts(filtered);
+                }
             });
         });
 
-        // Función para renderizar el catálogo
-        function renderCatalog() {
-            const grid = document.getElementById('catalogGrid');
-            const emptyState = document.getElementById('emptyState');
+        // Modal Functionality
+        function openModal(id) {
+            const product = products.find(p => p.id === id);
+            if (!product) return;
 
-            // Filtrado eficiente
-            const filtered = uniformsData.filter(item => {
-                const matchCategory = currentCategory === 'todos' || item.category === currentCategory;
-                const matchSearch = item.title.toLowerCase().includes(searchQuery) || 
-                                    item.categoryLabel.toLowerCase().includes(searchQuery) ||
-                                    item.id.toLowerCase().includes(searchQuery);
-                return matchCategory && matchSearch;
-            });
+            document.getElementById('modal-img').src = product.image;
+            document.getElementById('modal-category').innerText = product.categoryLabel;
+            document.getElementById('modal-title').innerText = product.title;
+            document.getElementById('modal-desc').innerText = product.description;
 
-            grid.innerHTML = '';
+            const waMsg = encodeURIComponent(`Hola, me interesa obtener información y cotizar el modelo: ${product.title}`);
+            document.getElementById('modal-whatsapp-btn').href = `https://wa.me/1234567890?text=${waMsg}`;
 
-            if (filtered.length === 0) {
-                emptyState.classList.remove('hidden');
-            } else {
-                emptyState.classList.add('hidden');
-                
-                filtered.forEach(item => {
-                    const card = document.createElement('div');
-                    card.className = 'bg-slate-900 rounded-2xl overflow-hidden border border-slate-800/80 shadow-sm hover:border-slate-700 flex flex-col relative cursor-pointer';
-                    card.onclick = () => openDetailPage(item.id);
-                    
-                    card.innerHTML = `
-                        <div class="relative aspect-[4/5] w-full bg-slate-950 overflow-hidden">
-                            <!-- Imagen full cover -->
-                            <img src="${item.image}" alt="${item.id}" 
-                                 loading="lazy"
-                                 onerror="this.onerror=null; this.src='https://placehold.co/600x800/0f172a/ffffff?text=Uniforme+Deportivo';"
-                                 class="w-full h-full object-cover">
-                            
-                            <!-- Categoría (Izquierda - Solo Categoría dentro de la imagen) -->
-                            <span class="absolute top-3 left-3 bg-emerald-600 text-white text-[11px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-md pointer-events-none">
-                                ${item.categoryLabel}
-                            </span>
-                        </div>
-                    `;
-                    grid.appendChild(card);
-                });
-            }
+            document.getElementById('product-modal').classList.remove('hidden');
         }
 
-        // Cambiar categoría activa
-        function filterCategory(cat) {
-            currentCategory = cat;
-            
-            // Actualizar clases visuales de los botones
-            document.querySelectorAll('.cat-btn').forEach(btn => {
-                btn.classList.remove('bg-emerald-600', 'text-white');
-                btn.classList.add('bg-slate-900', 'border', 'border-slate-800', 'text-slate-300');
-            });
-
-            event.currentTarget.classList.remove('bg-slate-900', 'border', 'border-slate-800', 'text-slate-300');
-            event.currentTarget.classList.add('bg-emerald-600', 'text-white');
-
-            renderCatalog();
+        function closeModal() {
+            document.getElementById('product-modal').classList.add('hidden');
         }
 
-        // Restablecer filtros
-        function resetFilters() {
-            currentCategory = 'todos';
-            searchQuery = '';
-            document.getElementById('searchInput').value = '';
-            
-            // Activar botón 'Todos'
-            const buttons = document.querySelectorAll('.cat-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-emerald-600', 'text-white');
-                btn.classList.add('bg-slate-900', 'border', 'border-slate-800', 'text-slate-300');
-            });
-            buttons[0].classList.remove('bg-slate-900', 'border', 'border-slate-800', 'text-slate-300');
-            buttons[0].classList.add('bg-emerald-600', 'text-white');
+        // Mobile Menu Toggle
+        const mobileBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-            renderCatalog();
+        mobileBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Form Submission Simulation
+        function handleFormSubmit() {
+            document.getElementById('contact-form').reset();
+            const successMsg = document.getElementById('form-success');
+            successMsg.classList.remove('hidden');
+            setTimeout(() => {
+                successMsg.classList.add('hidden');
+            }, 5000);
         }
 
-        // Navegación a la página de detalle
-        function openDetailPage(id) {
-            const item = uniformsData.find(i => i.id === id);
-            if (!item) return;
-
-            activeItem = item;
-
-            document.getElementById('detailCategory').textContent = item.categoryLabel;
-            document.getElementById('detailRefBadge').textContent = item.id;
-            document.getElementById('detailTitle').textContent = item.title;
-            document.getElementById('detailRefCode').textContent = `Código REF: ${item.id}`;
-            document.getElementById('detailDesc').textContent = item.description;
-
-            // Cargar imágenes en las miniaturas
-            document.getElementById('thumbImgFront').src = item.image;
-            document.getElementById('thumbImgBack').src = item.imageBack || item.image;
-
-            // Render vista por defecto (Frente)
-            switchDetailView('front');
-
-            // Render tags
-            const tagsContainer = document.getElementById('detailFeatures');
-            tagsContainer.innerHTML = '';
-            item.tags.forEach(tag => {
-                const tagEl = document.createElement('span');
-                tagEl.className = 'bg-slate-800 border border-slate-700 text-slate-300 text-xs px-3 py-1.5 rounded-lg font-medium';
-                tagEl.textContent = tag;
-                tagsContainer.appendChild(tagEl);
-            });
-
-            // Set WhatsApp link
-            const waMsg = encodeURIComponent(`Hola! Me interesa solicitar información y cotización sobre el uniforme: ${item.title} (Ref: ${item.id})`);
-            document.getElementById('detailWhatsAppBtn').href = `https://wa.me/message/FHCPOCCIA4RBC1`;
-
-            // Switch view from catalog to detail page directly
-            document.getElementById('catalogView').classList.add('hidden');
-            document.getElementById('detailView').classList.remove('hidden');
-            window.scrollTo(0, 0);
-        }
-
-        // Volver a la vista del catálogo
-        function showCatalogView() {
-            document.getElementById('detailView').classList.add('hidden');
-            document.getElementById('catalogView').classList.remove('hidden');
-            window.scrollTo(0, 0);
-        }
-
-        // Cambiar entre vista Frente y Dorsal usando miniaturas
-        function switchDetailView(view) {
-            if (!activeItem) return;
-            activeView = view;
-            const img = document.getElementById('detailImg');
-            const thumbFront = document.getElementById('thumbDetailFront');
-            const thumbBack = document.getElementById('thumbDetailBack');
-
-            // Cambio instantáneo de imagen
-            img.src = view === 'front' ? activeItem.image : (activeItem.imageBack || activeItem.image);
-
-            if (view === 'front') {
-                thumbFront.className = 'flex-1 aspect-[4/5] max-h-24 rounded-xl overflow-hidden border-2 border-emerald-500 relative bg-slate-950 focus:outline-none shadow-md opacity-100';
-                thumbBack.className = 'flex-1 aspect-[4/5] max-h-24 rounded-xl overflow-hidden border-2 border-slate-800 opacity-60 hover:opacity-100 relative bg-slate-950 focus:outline-none';
-            } else {
-                thumbBack.className = 'flex-1 aspect-[4/5] max-h-24 rounded-xl overflow-hidden border-2 border-emerald-500 relative bg-slate-950 focus:outline-none shadow-md opacity-100';
-                thumbFront.className = 'flex-1 aspect-[4/5] max-h-24 rounded-xl overflow-hidden border-2 border-slate-800 opacity-60 hover:opacity-100 relative bg-slate-950 focus:outline-none';
-            }
-        }
+        // Initialize Catalog on Load
+        window.onload = function() {
+            renderProducts(products);
+        };
     </script>
 </body>
 </html>
