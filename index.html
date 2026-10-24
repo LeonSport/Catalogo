@@ -223,8 +223,11 @@
                         <div class="flex items-center gap-2">
                             <i class="fa-solid fa-check text-emerald-500"></i> Incluye número y nombre
                         </div>
+                                                <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-check text-emerald-500"></i> Tus logos y patrocinadores
+                        </div>
                         <div class="flex items-center gap-2">
-                            <i class="fa-solid fa-check text-emerald-500"></i> Tallas desde XS hasta XXL
+                            <i class="fa-solid fa-check text-emerald-500"></i> Tallas desde 2 hasta XXXL
                         </div>
                     </div>
                 </div>
@@ -405,7 +408,7 @@
             category: "futbol",
             categoryLabel: "Fútbol",
             image: "./imgs/catalogo/futbol/1 (1).jpg",
-            description: "Conjunto completo de camiseta y camisilla/pantaloneta. Fabricado con microfibra de alta elasticidad para máxima movilidad en el campo de juego."
+            // description: "Conjunto completo de camiseta y camisilla/pantaloneta. Fabricado con microfibra de alta elasticidad para máxima movilidad en el campo de juego."
         },
         {
             id: 2,
@@ -413,7 +416,7 @@
             category: "baloncesto",
             categoryLabel: "Baloncesto",
             image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1080&h=1350&q=80",
-            description: "Camisilla holgada de malla transpirable y pantaloneta amplia. Diseño ligero pensado para libertad total en cada salto."
+            // description: "Camisilla holgada de malla transpirable y pantaloneta amplia. Diseño ligero pensado para libertad total en cada salto."
         },
         {
             id: 3,
@@ -421,7 +424,7 @@
             category: "voleibol",
             categoryLabel: "Voleibol",
             image: "https://images.unsplash.com/photo-1592656094267-764a45160876?auto=format&fit=crop&w=1080&h=1350&q=80",
-            description: "Prendas ajustadas ergonómicamente con costuras reforzadas anti-roce. Excelente resistencia al desgaste."
+            // description: "Prendas ajustadas ergonómicamente con costuras reforzadas anti-roce. Excelente resistencia al desgaste."
         },
         {
             id: 4,
@@ -429,7 +432,7 @@
             category: "Presentación",
             categoryLabel: "Presentación",
             image: "https://images.unsplash.com/photo-1502904550040-7534597429ae?auto=format&fit=crop&w=1080&h=1350&q=80",
-            description: "Camiseta ultra liviana con detalles reflectivos para entrenamientos nocturnos. Absorción rápida del sudor."
+            // description: "Camiseta ultra liviana con detalles reflectivos para entrenamientos nocturnos. Absorción rápida del sudor."
         },
         {
             id: 5,
@@ -437,7 +440,7 @@
             category: "futbol",
             categoryLabel: "Fútbol",
             image: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1080&h=1350&q=80",
-            description: "Diseño moderno con colores de alto contraste sublimados en alta definición. Incluye medias deportivas de compresión."
+            // description: "Diseño moderno con colores de alto contraste sublimados en alta definición. Incluye medias deportivas de compresión."
         },
         {
             id: 6,
@@ -445,7 +448,7 @@
             category: "voleibol",
             categoryLabel: "Voleibol",
             image: "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?auto=format&fit=crop&w=1080&h=1350&q=80",
-            description: "Tejido suave de secado rápido con protección UV. Ideal para voleibol de sala o de playa."
+            // description: "Tejido suave de secado rápido con protección UV. Ideal para voleibol de sala o de playa."
         }
     ];
 
@@ -509,7 +512,7 @@
             document.getElementById('modal-img').src = product.image;
             document.getElementById('modal-category').innerText = product.categoryLabel;
             document.getElementById('modal-title').innerText = product.title;
-            document.getElementById('modal-desc').innerText = product.description;
+            // document.getElementById('modal-desc').innerText = product.description;
 
             const waMsg = encodeURIComponent(`Hola, me interesa obtener información y cotizar el modelo: ${product.title}`);
             document.getElementById('modal-whatsapp-btn').href = `https://wa.me/573143022180`;
