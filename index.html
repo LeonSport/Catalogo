@@ -13,7 +13,7 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Tailwind CSS (Carga garantizada por CSS CDN en producción) -->
+    <!-- Tailwind CSS (CDN estable) -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -64,13 +64,12 @@
         .modal-open {
             overflow: hidden;
         }
-        /* Garantizar que los logos e imágenes no se desborden jamás en ningún navegador */
         img {
             max-width: 100%;
             height: auto;
         }
         .logo-img {
-            max-height: 2.5rem !important; /* 40px */
+            max-height: 2.5rem !important;
             width: auto !important;
             object-fit: contain;
         }
@@ -79,7 +78,7 @@
 <body class="bg-slate-50 font-sans text-slate-800 antialiased selection:bg-brand-500 selection:text-white">
 
     <!-- Header / Navbar -->
-    <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md shadow-sm border-b border-slate-100">
+    <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md shadow-sm border-b border-slate-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
                 <!-- Logo -->
@@ -114,9 +113,10 @@
 
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-slate-100 px-4 pt-2 pb-6 space-y-3">
-            <a href="#inicio" class="block py-2 font-semibold text-slate-700 hover:text-brand-600">Inicio</a>
-            <a href="#catalogo" class="block py-2 font-semibold text-slate-700 hover:text-brand-600">Catálogo</a>
-            <a href="#nosotros" class="block py-2 font-semibold text-slate-700 hover:text-brand-600">Beneficios</a>
+            <a href="#inicio" class="block py-2 font-semibold text-slate-700 hover:text-brand-600 mobile-link">Inicio</a>
+            <a href="#catalogo" class="block py-2 font-semibold text-slate-700 hover:text-brand-600 mobile-link">Catálogo</a>
+            <a href="#nosotros" class="block py-2 font-semibold text-slate-700 hover:text-brand-600 mobile-link">Beneficios</a>
+            <a href="#contacto" class="block py-2 font-semibold text-slate-700 hover:text-brand-600 mobile-link">Contacto</a>
             <a href="https://wa.me/573143022180" target="_blank" class="w-full bg-emerald-500 text-white py-3 rounded-xl font-bold text-center block mt-4 flex items-center justify-center gap-2">
                 <i class="fa-brands fa-whatsapp text-xl"></i> Cotizar por WhatsApp
             </a>
@@ -141,7 +141,7 @@
                         <a href="#catalogo" class="bg-brand-600 hover:bg-brand-700 text-white px-8 py-4 rounded-xl font-bold text-center transition-all shadow-lg hover:shadow-brand-500/50 flex items-center justify-center gap-2" style="background-color: #1d4ed8;">
                             Ver Catálogo <i class="fa-solid fa-arrow-down"></i>
                         </a>
-                        <a href="https://wa.me/573143022180" class="bg-emerald-500 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-xl font-bold text-center backdrop-blur-sm transition-all flex items-center justify-center gap-2">
+                        <a href="https://wa.me/573143022180" target="_blank" class="bg-emerald-500 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-xl font-bold text-center backdrop-blur-sm transition-all flex items-center justify-center gap-2">
                             Solicitar Cotización
                         </a>
                     </div>
@@ -215,7 +215,7 @@
         </button>
 
         <!-- Contenedor Principal de la Imagen y Botón de WhatsApp -->
-        <div class="relative max-w-full max-h-[90vh] flex flex-col items-center justify-center p-2" id="fs-container">
+        <div class="relative max-w-full max-h-[90vh] flex flex-col items-center justify-center p-2" id="fullscreen-container">
             <img id="fullscreen-img" src="" alt="Imagen ampliada" class="max-w-full max-h-[75vh] sm:max-h-[80vh] aspect-[4/5] object-contain rounded-lg shadow-2xl transition-opacity duration-200">
             
             <!-- Botón WhatsApp Flotante Abajo -->
@@ -555,13 +555,13 @@
     let touchStartX = 0;
     let touchEndX = 0;
 
-    const fsModal = document.getElementById('fullscreen-modal');
-    if (fsModal) {
-        fsModal.addEventListener('touchstart', (e) => {
+    const fsContainer = document.getElementById('fullscreen-container');
+    if (fsContainer) {
+        fsContainer.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
         }, { passive: true });
 
-        fsModal.addEventListener('touchend', (e) => {
+        fsContainer.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
             handleSwipe();
         }, { passive: true });
@@ -587,7 +587,8 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        document.querySelectorAll('#mobile-menu a').forEach(link => {
+        // Cerrar menú móvil al hacer clic en cualquier enlace interno
+        document.querySelectorAll('.mobile-link').forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
             });
