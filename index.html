@@ -13,7 +13,8 @@
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Tailwind CSS Script -->
+    <!-- Tailwind CSS (Carga garantizada por CSS CDN en producción) -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -63,9 +64,15 @@
         .modal-open {
             overflow: hidden;
         }
+        /* Garantizar que los logos e imágenes no se desborden jamás en ningún navegador */
         img {
             max-width: 100%;
             height: auto;
+        }
+        .logo-img {
+            max-height: 2.5rem !important; /* 40px */
+            width: auto !important;
+            object-fit: contain;
         }
     </style>
 </head>
@@ -78,9 +85,9 @@
                 <!-- Logo -->
                 <div class="flex items-center gap-2 h-20">
                     <div class="w-max h-max flex items-center justify-center">
-                        <img src="imgs/logo/LS BLACK 2.png" class="h-10">
+                        <img src="imgs/logo/LS BLACK 2.png" class="logo-img h-10" alt="Logo">
                     </div>
-                    <span class="text-2xl font-extrabold tracking-tight text-slate-900 flex gap-2">LEON<span class="text-brand-600">SPORT</span></span>
+                    <span class="text-2xl font-extrabold tracking-tight text-slate-900 flex gap-2">LEON<span class="text-brand-600" style="color: #1d4ed8;">SPORT</span></span>
                 </div>
 
                 <!-- Navigation Desktop -->
@@ -131,7 +138,7 @@
                         Diseñamos y fabricamos uniformes deportivos para fútbol, baloncesto, voleibol y más. Telas transpirables, duraderas y diseños 100% personalizados.
                     </p>
                     <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start pt-4">
-                        <a href="#catalogo" class="bg-brand-600 hover:bg-brand-700 text-white px-8 py-4 rounded-xl font-bold text-center transition-all shadow-lg hover:shadow-brand-500/50 flex items-center justify-center gap-2">
+                        <a href="#catalogo" class="bg-brand-600 hover:bg-brand-700 text-white px-8 py-4 rounded-xl font-bold text-center transition-all shadow-lg hover:shadow-brand-500/50 flex items-center justify-center gap-2" style="background-color: #1d4ed8;">
                             Ver Catálogo <i class="fa-solid fa-arrow-down"></i>
                         </a>
                         <a href="https://wa.me/573143022180" class="bg-emerald-500 hover:bg-white/20 text-white border border-white/20 px-8 py-4 rounded-xl font-bold text-center backdrop-blur-sm transition-all flex items-center justify-center gap-2">
@@ -148,19 +155,19 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
                 <div class="p-4">
-                    <div class="text-3xl font-extrabold text-brand-600">+500</div>
+                    <div class="text-3xl font-extrabold text-brand-600" style="color: #1d4ed8;">+500</div>
                     <div class="text-sm font-medium text-slate-500 mt-1">Equipos Equipados</div>
                 </div>
                 <div class="p-4">
-                    <div class="text-3xl font-extrabold text-brand-600">100%</div>
+                    <div class="text-3xl font-extrabold text-brand-600" style="color: #1d4ed8;">100%</div>
                     <div class="text-sm font-medium text-slate-500 mt-1">Personalizable</div>
                 </div>
                 <div class="p-4">
-                    <div class="text-3xl font-extrabold text-brand-600">DryFit</div>
+                    <div class="text-3xl font-extrabold text-brand-600" style="color: #1d4ed8;">DryFit</div>
                     <div class="text-sm font-medium text-slate-500 mt-1">Telas Inteligentes</div>
                 </div>
                 <div class="p-4">
-                    <div class="text-3xl font-extrabold text-brand-600">7-15 Días</div>
+                    <div class="text-3xl font-extrabold text-brand-600" style="color: #1d4ed8;">7-15 Días</div>
                     <div class="text-sm font-medium text-slate-500 mt-1">Entrega Rápida</div>
                 </div>
             </div>
@@ -176,7 +183,7 @@
 
         <!-- Filter Buttons -->
         <div class="flex flex-wrap justify-center gap-2 mb-10" id="filter-buttons">
-            <button class="filter-btn active px-5 py-2.5 rounded-full font-bold text-sm bg-brand-600 text-white transition-all shadow-md" data-category="todos">Todos</button>
+            <button class="filter-btn active px-5 py-2.5 rounded-full font-bold text-sm bg-brand-600 text-white transition-all shadow-md" style="background-color: #1d4ed8;" data-category="todos">Todos</button>
             <button class="filter-btn px-5 py-2.5 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition-all" data-category="futbol">Fútbol</button>
             <button class="filter-btn px-5 py-2.5 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition-all" data-category="baloncesto">Baloncesto</button>
             <button class="filter-btn px-5 py-2.5 rounded-full font-bold text-sm bg-white text-slate-600 border border-slate-200 hover:bg-slate-100 transition-all" data-category="voleibol">Voleibol</button>
@@ -189,7 +196,7 @@
         </div>
     </section>
 
-    <!-- Fullscreen Image Lightbox Modal con soporte de Flechas, Swipe y Back del Celular -->
+    <!-- Fullscreen Image Lightbox Modal -->
     <div id="fullscreen-modal" class="fixed inset-0 bg-black/95 z-50 flex items-center justify-center hidden p-2 sm:p-4 select-none">
         
         <!-- Botón Cerrar -->
@@ -199,7 +206,7 @@
 
         <!-- Categoría Flotante (Arriba Izquierda) -->
         <div class="absolute top-4 left-4 z-50">
-            <span id="fs-category" class="bg-brand-600 text-white font-bold text-xs uppercase tracking-wider px-3 py-1.5 rounded-full shadow-lg"></span>
+            <span id="fs-category" class="bg-brand-600 text-white font-bold text-xs uppercase tracking-wider px-3 py-1.5 rounded-full shadow-lg" style="background-color: #1d4ed8;"></span>
         </div>
 
         <!-- Botón Anterior (Izquierda) -->
@@ -227,7 +234,7 @@
     <section id="contacto" class="py-20 bg-slate-900 text-white relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-brand-500 font-bold text-sm tracking-widest uppercase">Ubícanos & Contáctanos</span>
+                <span class="text-brand-500 font-bold text-sm tracking-widest uppercase" style="color: #2563eb;">Ubícanos & Contáctanos</span>
                 <h2 class="text-3xl sm:text-4xl font-extrabold text-white mt-2">Visítanos en Nuestra Tienda</h2>
                 <p class="text-slate-400 mt-3 text-lg">Estamos listos para asesorarte y darle vida a los uniformes de tu equipo.</p>
             </div>
@@ -306,7 +313,7 @@
                 <!-- Columna Logo e Info -->
                 <div class="md:col-span-1 space-y-4">
                     <div class="flex items-center gap-2">
-                        <span class="text-2xl font-extrabold tracking-tight text-white flex gap-2">LEON<span class="text-brand-500">SPORT</span></span>
+                        <span class="text-2xl font-extrabold tracking-tight text-white flex gap-2">LEON<span class="text-brand-500" style="color: #2563eb;">SPORT</span></span>
                     </div>
                     <p class="text-xs text-slate-400 leading-relaxed">
                         Fabricación y personalización de indumentaria deportiva de alto rendimiento para equipos, escuelas, torneos y empresas.
@@ -458,11 +465,13 @@
         btn.addEventListener('click', () => {
             filterBtns.forEach(b => {
                 b.classList.remove('bg-brand-600', 'text-white', 'shadow-md');
+                b.style.backgroundColor = '';
                 b.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
             });
 
             btn.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
             btn.classList.add('bg-brand-600', 'text-white', 'shadow-md');
+            btn.style.backgroundColor = '#1d4ed8';
 
             const category = btn.getAttribute('data-category');
             if (category === 'todos') {
@@ -479,13 +488,11 @@
         const targetProduct = products.find(p => p.id === id);
         if (!targetProduct) return;
 
-        // Obtener solo los productos de la misma categoría para navegar entre ellos
         currentCategoryList = products.filter(p => p.category === targetProduct.category);
         currentIndex = currentCategoryList.findIndex(p => p.id === id);
 
         updateModalContent();
 
-        // Agregar estado al historial para que el botón "Atrás" del celular cierre el visor
         history.pushState({ modalOpen: true }, '');
         document.getElementById('fullscreen-modal').classList.remove('hidden');
         document.body.classList.add('modal-open');
@@ -529,14 +536,13 @@
         if (!modal.classList.contains('hidden')) {
             modal.classList.add('hidden');
             document.body.classList.remove('modal-open');
-            // Si el modal se abrió empujando el historial, volvemos atrás si es necesario
             if (window.history.state && window.history.state.modalOpen) {
                 window.history.back();
             }
         }
     }
 
-    // Escuchar el botón de retroceso (Back) del celular o navegador
+    // Escuchar el botón de retroceso (Back) del celular
     window.addEventListener('popstate', (event) => {
         const modal = document.getElementById('fullscreen-modal');
         if (modal && !modal.classList.contains('hidden')) {
@@ -549,26 +555,24 @@
     let touchStartX = 0;
     let touchEndX = 0;
 
-    const fsContainer = document.getElementById('fullscreen-container');
-    if (fsContainer) {
-        fsContainer.addEventListener('touchstart', (e) => {
+    const fsModal = document.getElementById('fullscreen-modal');
+    if (fsModal) {
+        fsModal.addEventListener('touchstart', (e) => {
             touchStartX = e.changedTouches[0].screenX;
         }, { passive: true });
 
-        fsContainer.addEventListener('touchend', (e) => {
+        fsModal.addEventListener('touchend', (e) => {
             touchEndX = e.changedTouches[0].screenX;
             handleSwipe();
         }, { passive: true });
     }
 
     function handleSwipe() {
-        const swipeThreshold = 50; // Mínimo de distancia en píxeles para considerar un gesto
+        const swipeThreshold = 50;
         if (touchEndX < touchStartX - swipeThreshold) {
-            // Deslizó hacia la izquierda -> Siguiente imagen
             nextImage();
         }
         if (touchEndX > touchStartX + swipeThreshold) {
-            // Deslizó hacia la derecha -> Imagen anterior
             prevImage();
         }
     }
