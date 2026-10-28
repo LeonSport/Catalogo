@@ -12,14 +12,21 @@
             title: "🏀Bal-02601🏀",
             category: "baloncesto",
             categoryLabel: "Baloncesto",
-            image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1080&h=1350&q=80"
+            image: "https://i.pinimg.com/1200x/9a/37/a9/9a37a924daa58d3a97d76feb1ba11370.jpg"
         },
         {
             id: 3,
             title: "🏐Vol-02601🏐",
             category: "voleibol",
             categoryLabel: "Voleibol",
-            image: "https://images.unsplash.com/photo-1592656094267-764a45160876?auto=format&fit=crop&w=1080&h=1350&q=80"
+            image: "https://i.pinimg.com/736x/1f/99/59/1f9959b6fd9d43edfdb8e2d6b6aa6a91.jpg"
+        },
+        {
+            id: 4,
+            title: "🎽Pet-02601🎽", 
+            category: "petos",
+            categoryLabel: "Petos",
+            image: "https://i.pinimg.com/736x/58/a1/11/58a111f4e52ec1852dbbd3512880fd5b.jpg"
         },
     ];
 
