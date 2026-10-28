@@ -2,46 +2,25 @@
     const products = [
         {
             id: 1,
-            title: "Uniforme Fútbol Elite Crimson",
+            title: "⚽Fut-02601⚽",
             category: "futbol",
             categoryLabel: "Fútbol",
             image: "./imgs/catalogo/futbol/1 (1).jpg"
         },
         {
             id: 2,
-            title: "Kit Baloncesto Hoops Pro",
+            title: "🏀Bal-02601🏀",
             category: "baloncesto",
             categoryLabel: "Baloncesto",
             image: "https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=1080&h=1350&q=80"
         },
         {
             id: 3,
-            title: "Uniforme Voleibol Active Flex",
+            title: "🏐Vol-02601🏐",
             category: "voleibol",
             categoryLabel: "Voleibol",
             image: "https://images.unsplash.com/photo-1592656094267-764a45160876?auto=format&fit=crop&w=1080&h=1350&q=80"
         },
-        {
-            id: 4,
-            title: "Camiseta Runner Stride Light",
-            category: "Presentación",
-            categoryLabel: "Presentación",
-            image: "https://images.unsplash.com/photo-1502904550040-7534597429ae?auto=format&fit=crop&w=1080&h=1350&q=80"
-        },
-        {
-            id: 5,
-            title: "Uniforme Fútbol Striker Neon",
-            category: "futbol",
-            categoryLabel: "Fútbol",
-            image: "https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1080&h=1350&q=80"
-        },
-        {
-            id: 6,
-            title: "Conjunto Voleibol Spike Pro",
-            category: "voleibol",
-            categoryLabel: "Voleibol",
-            image: "https://images.unsplash.com/photo-1612872087720-bb876e2e67d1?auto=format&fit=crop&w=1080&h=1350&q=80"
-        }
     ];
 
     let currentCategoryList = [];
