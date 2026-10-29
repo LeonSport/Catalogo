@@ -1481,11 +1481,13 @@ img { max-width: 100%; height: auto; }
   width: 100%;
   padding: 22px 0;
   overflow: hidden;
+  background: #fff;
 }
 
 .escuelas-title {
   margin: 0 0 18px;
   padding: 0 16px;
+  padding-top: 30px;
   text-align: center;
   font-size: 30px;
   font-weight: 700;
@@ -1550,7 +1552,7 @@ img { max-width: 100%; height: auto; }
   }
 
   .escuelas-title {
-    font-size: 17px;
+    font-size: 30px;
     margin-bottom: 14px;
   }
 
@@ -1560,9 +1562,9 @@ img { max-width: 100%; height: auto; }
   }
 
   .escudo-item {
-    width: 52px;
-    height: 52px;
-    flex-basis: 52px;
+    width: 65px;
+    height: 65px;
+    flex-basis: 65px;
   }
 }
 
