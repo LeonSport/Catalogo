@@ -2,31 +2,31 @@
     const products = [
         {
             id: 1,
-            title: "⚽Fut-02601⚽",
-            category: "futbol",
-            categoryLabel: "Fútbol",
-            image: "./imgs/catalogo/futbol/1 (1).jpg"
+            // title: "⚽Fut-02601⚽",
+            category: "elite",
+            categoryLabel: "Elite",
+            image: "./imgs/catalogo/futbol/elite/02601.jpg"
         },
         {
             id: 2,
-            title: "🏀Bal-02601🏀",
-            category: "baloncesto",
-            categoryLabel: "Baloncesto",
-            image: "https://i.pinimg.com/1200x/9a/37/a9/9a37a924daa58d3a97d76feb1ba11370.jpg"
+            // title: "🏀Bal-02601🏀",
+            category: "dominio",
+            categoryLabel: "Dominio",
+            image: "./imgs/catalogo/futbol/dominio/02601.jpg"
         },
         {
             id: 3,
-            title: "🏐Vol-02601🏐",
-            category: "voleibol",
-            categoryLabel: "Voleibol",
-            image: "https://i.pinimg.com/736x/1f/99/59/1f9959b6fd9d43edfdb8e2d6b6aa6a91.jpg"
+            // title: "🏐Vol-02601🏐",
+            category: "infinity",
+            categoryLabel: "Infinity",
+            image: "./imgs/catalogo/futbol/infinity/02601.jpg"
         },
         {
             id: 4,
-            title: "🎽Pet-02601🎽", 
-            category: "petos",
-            categoryLabel: "Petos",
-            image: "https://i.pinimg.com/736x/58/a1/11/58a111f4e52ec1852dbbd3512880fd5b.jpg"
+            // title: "🎽Pet-02601🎽", 
+            category: "prestige",
+            categoryLabel: "Prestige",
+            image: "./imgs/catalogo/futbol/prestige/02601.jpg"
         },
     ];
 
@@ -55,9 +55,12 @@
                         </span>
                     </div>
                 </div>
+                
+                <!-- 
                 <div class="p-3 sm:p-4 text-center bg-white border-t border-slate-50">
                     <h3 class="font-bold text-xs sm:text-sm text-slate-900 group-hover:text-brand-600 transition-colors line-clamp-1">${product.title}</h3>
                 </div>
+                -->
             `;
             grid.appendChild(card);
         });
