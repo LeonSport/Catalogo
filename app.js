@@ -30,6 +30,37 @@
         },
     ];
 
+
+/* ===== CARRUSEL INFINITO DE ESCUDOS ===== */
+
+document.addEventListener("DOMContentLoaded", function () {
+  const track = document.getElementById("escudos-track");
+
+  if (!track) return;
+
+  const originalGroup = track.querySelector(".escudos-group");
+
+  if (!originalGroup) return;
+
+  // Evitar duplicar los escudos más de una vez.
+  if (track.dataset.clonado === "true") return;
+
+  // Crear una copia idéntica para mantener el bucle continuo.
+  const clone = originalGroup.cloneNode(true);
+
+  // Los escudos de la copia son decorativos para lectores de pantalla.
+  clone.setAttribute("aria-hidden", "true");
+
+  clone.querySelectorAll("img").forEach(function (img) {
+    img.alt = "";
+  });
+
+  track.appendChild(clone);
+  track.dataset.clonado = "true";
+});
+
+
+
     let currentCategoryList = [];
     let currentIndex = 0;
 
@@ -55,7 +86,7 @@
                         </span>
                     </div>
                 </div>
-                
+
                 <!-- 
                 <div class="p-3 sm:p-4 text-center bg-white border-t border-slate-50">
                     <h3 class="font-bold text-xs sm:text-sm text-slate-900 group-hover:text-brand-600 transition-colors line-clamp-1">${product.title}</h3>
