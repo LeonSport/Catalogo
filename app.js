@@ -8,6 +8,13 @@
             image: "./imgs/catalogo/futbol/elite/02601.jpg"
         },
         {
+            id: 1,
+            // title: "⚽Fut-02601⚽",
+            category: "elite",
+            categoryLabel: "Elite",
+            image: "./imgs/catalogo/futbol/elite/02603.jpg"
+        },
+        {
             id: 2,
             // title: "🏀Bal-02601🏀",
             category: "dominio",
