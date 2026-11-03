@@ -8,28 +8,28 @@
             image: "./imgs/catalogo/futbol/elite/02601.jpg"
         },
         {
-            id: 1,
+            id: 2,
             // title: "⚽Fut-02601⚽",
             category: "elite",
             categoryLabel: "Elite",
             image: "./imgs/catalogo/futbol/elite/02603.jpg"
         },
         {
-            id: 2,
+            id: 20,
             // title: "🏀Bal-02601🏀",
             category: "dominio",
             categoryLabel: "Dominio",
             image: "./imgs/catalogo/futbol/dominio/02601.jpg"
         },
         {
-            id: 3,
+            id: 40,
             // title: "🏐Vol-02601🏐",
             category: "infinity",
             categoryLabel: "Infinity",
             image: "./imgs/catalogo/futbol/infinity/02601.jpg"
         },
         {
-            id: 4,
+            id: 60,
             // title: "🎽Pet-02601🎽", 
             category: "prestige",
             categoryLabel: "Prestige",
