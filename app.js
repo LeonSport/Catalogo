@@ -2,35 +2,35 @@
     const products = [
         {
             id: 1,
-            // title: "⚽Fut-02601⚽",
+            // ELITE
             category: "elite",
             categoryLabel: "Elite",
             image: "./imgs/catalogo/futbol/elite/02601.jpg"
         },
         {
             id: 2,
-            // title: "⚽Fut-02601⚽",
+            // ELITE
             category: "elite",
             categoryLabel: "Elite",
             image: "./imgs/catalogo/futbol/elite/02603.jpg"
         },
         {
             id: 20,
-            // title: "🏀Bal-02601🏀",
+            // DOMINIO
             category: "dominio",
             categoryLabel: "Dominio",
             image: "./imgs/catalogo/futbol/dominio/02601.jpg"
         },
         {
             id: 40,
-            // title: "🏐Vol-02601🏐",
+            // INFINITY
             category: "infinity",
             categoryLabel: "Infinity",
             image: "./imgs/catalogo/futbol/infinity/02601.jpg"
         },
         {
             id: 60,
-            // title: "🎽Pet-02601🎽", 
+            // PRESTIGE 
             category: "prestige",
             categoryLabel: "Prestige",
             image: "./imgs/catalogo/futbol/prestige/02601.jpg"
