@@ -26,7 +26,7 @@
             // DOMINIO
             category: "dominio",
             categoryLabel: "Dominio",
-            image: "./imgs/catalogo/futbol/dominio/D0-02602.jpg"
+            image: "./imgs/catalogo/futbol/dominio/DO-02602.jpg"
         },
         {
             id: 40,
