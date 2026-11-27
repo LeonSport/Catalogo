@@ -15,6 +15,34 @@
             image: "./imgs/catalogo/futbol/elite/EL-02602.jpg"
         },
         {
+            id: 3,
+            // ELITE
+            category: "elite",
+            categoryLabel: "Elite",
+            image: "./imgs/catalogo/futbol/elite/EL-02603.jpg"
+        },
+        {
+            id: 4,
+            // ELITE
+            category: "elite",
+            categoryLabel: "Elite",
+            image: "./imgs/catalogo/futbol/elite/EL-02604.jpg"
+        },
+        {
+            id: 5,
+            // ELITE
+            category: "elite",
+            categoryLabel: "Elite",
+            image: "./imgs/catalogo/futbol/elite/EL-02605.jpg"
+        },
+        {
+            id: 6,
+            // ELITE
+            category: "elite",
+            categoryLabel: "Elite",
+            image: "./imgs/catalogo/futbol/elite/EL-02606.jpg"
+        },
+        {
             id: 20,
             // DOMINIO
             category: "dominio",
