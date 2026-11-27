@@ -57,6 +57,34 @@
             image: "./imgs/catalogo/futbol/dominio/DO-02602.jpg"
         },
         {
+            id: 22,
+            // DOMINIO
+            category: "dominio",
+            categoryLabel: "Dominio",
+            image: "./imgs/catalogo/futbol/dominio/DO-02603.jpg"
+        },
+        {
+            id: 23,
+            // DOMINIO
+            category: "dominio",
+            categoryLabel: "Dominio",
+            image: "./imgs/catalogo/futbol/dominio/DO-02604.jpg"
+        },
+        {
+            id: 24,
+            // DOMINIO
+            category: "dominio",
+            categoryLabel: "Dominio",
+            image: "./imgs/catalogo/futbol/dominio/DO-02605.jpg"
+        },
+        {
+            id: 25,
+            // DOMINIO
+            category: "dominio",
+            categoryLabel: "Dominio",
+            image: "./imgs/catalogo/futbol/dominio/DO-02606.jpg"
+        },
+        {
             id: 40,
             // INFINITY
             category: "infinity",
@@ -71,18 +99,74 @@
             image: "./imgs/catalogo/futbol/infinity/IN-02602.jpg"
         },
         {
+            id: 42,
+            // INFINITY
+            category: "infinity",
+            categoryLabel: "Infinity",
+            image: "./imgs/catalogo/futbol/infinity/IN-02603.jpg"
+        },
+        {
+            id: 43,
+            // INFINITY
+            category: "infinity",
+            categoryLabel: "Infinity",
+            image: "./imgs/catalogo/futbol/infinity/IN-02604.jpg"
+        },
+        {
+            id: 44,
+            // INFINITY
+            category: "infinity",
+            categoryLabel: "Infinity",
+            image: "./imgs/catalogo/futbol/infinity/IN-02605.jpg"
+        },
+        {
+            id: 45,
+            // INFINITY
+            category: "infinity",
+            categoryLabel: "Infinity",
+            image: "./imgs/catalogo/futbol/infinity/IN-02606.jpg"
+        },
+        {
             id: 60,
-            // PRESTIGE 
+            // PRESTIGE
             category: "prestige",
             categoryLabel: "Prestige",
             image: "./imgs/catalogo/futbol/prestige/PR-02601.jpg"
         },
         {
             id: 61,
-            // PRESTIGE 
+            // PRESTIGE
             category: "prestige",
             categoryLabel: "Prestige",
             image: "./imgs/catalogo/futbol/prestige/PR-02602.jpg"
+        },
+        {
+            id: 62,
+            // PRESTIGE
+            category: "prestige",
+            categoryLabel: "Prestige",
+            image: "./imgs/catalogo/futbol/prestige/PR-02603.jpg"
+        },
+        {
+            id: 63,
+            // PRESTIGE
+            category: "prestige",
+            categoryLabel: "Prestige",
+            image: "./imgs/catalogo/futbol/prestige/PR-02604.jpg"
+        },
+        {
+            id: 64,
+            // PRESTIGE
+            category: "prestige",
+            categoryLabel: "Prestige",
+            image: "./imgs/catalogo/futbol/prestige/PR-02605.jpg"
+        },
+        {
+            id: 65,
+            // PRESTIGE
+            category: "prestige",
+            categoryLabel: "Prestige",
+            image: "./imgs/catalogo/futbol/prestige/PR-02606.jpg"
         },
     ];
 
